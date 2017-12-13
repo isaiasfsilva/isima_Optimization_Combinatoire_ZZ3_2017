@@ -1,0 +1,12 @@
+Reading the header ... 
+	Model with 12 periodes;
+	Model with 2 produits;
+	Model with 3 scenarios;
+	Model with 3 investissements;
+	Model with stock capacity of 11 products;
+Reading the products price ... 
+	The selling price of the product 1 = 50;
+	The selling price of the product 2 = 60;
+	The Amortissement price is 15;
+	The maximum number of machines is 10;
+total execution time = 0.000715574
