@@ -3,7 +3,7 @@ using namespace std;
 using lemon::INVALID;
 
 
-//We need an 3D matrix for Y variable of our problem! This is the define!
+//We need an 3sssD matrix for Y variable of our problem! This is the define!
 typedef IloArray<IloNumVarArray> NumVarMatrix;
 typedef IloArray<NumVarMatrix>   NumVar3Matrix;
 
