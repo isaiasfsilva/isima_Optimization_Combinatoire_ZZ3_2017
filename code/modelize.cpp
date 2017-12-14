@@ -1,20 +1,101 @@
-#include "LPF2_Relaxed.hpp"
+/*
+
+[2017] Isaias Faria Silva and Florian Robert
+All Rights Reserved.
+ 
+NOTICE: All information contained here in this file is the 
+        property of Isaias Faria Silva and its partner. 
+        If you want to use this, please put the contact 
+        rights information.
+ 
+PURPOSE:Practical activity of combinatorial Optimization
+		Clermont-Auvergne University - Computer Science Institute
+		ZZ3 - 2017 december 
+
+DESCRIPTION:
+		This is .cpp file of the model creator of this project
+
+Last update: 14 december 2017
+*/
+
+
+
+
+#include "modelize.hpp"
 using namespace std;
-using lemon::INVALID;
 
 
-//We need an 3sssD matrix for Y variable of our problem! This is the define!
+//We need an 3D matrix for Y variable of our problem! This is the define!
 typedef IloArray<IloNumVarArray> NumVarMatrix;
 typedef IloArray<NumVarMatrix>   NumVar3Matrix;
 
 
-void LPF2_Relaxed::create_problem( ListDigraph *g, int *&myNodes,int *&myArcs, int &nNodes, int &nEdges, int &nTerminals, int nRoot){
+bool Modelize::create_problem(string model_name, string out_file,  core *core_,IloCplex *cplex, int scen = 0){
 
-	model = new IloModel(env, "LPF2 - Relaxed");
+	if(VERBOSE)
+		cout << "\tModelizing the scenario " << scen << " ["<<model_name << "]" << endl;
 
+    IloEnv env;
+	IloModel *model;
+
+	model = new IloModel(env, "bajbasdabsd");
+	cplex = new IloCplex(*model);
 
 	try{
 	 
+	
+	cplex->exportModel("qsdughqsyudgqsyud.lp");
+
+//CREATING VARIABLES
+
+	NumVarMatrix x(env,core_->getNbProducts());
+	for(int i=0;i<core_->getNbProducts(); i++)
+		x[i]=IloNumVarArray(env,core_->getNbPeriodes(),0,IloInfinity,ILOINT);
+
+	NumVarMatrix y(env,core_->getNbProducts());
+	for(int i=0;i<core_->getNbProducts(); i++)
+		y[i]=IloNumVarArray(env,core_->getNbPeriodes()+1,0,IloInfinity,ILOINT);
+
+
+	NumVarMatrix z(env,core_->getNbInvestissements());
+	for(int i=0;i<core_->getNbInvestissements(); i++)
+		z[i]=IloNumVarArray(env,core_->nb_machines(),0,1,ILOINT);
+
+	IloNumVarArray l(env, core_->getNbPeriodes()+1,0,IloInfinity,ILOINT);
+
+
+
+
+//CREATING THE CONTRAINTS
+	// CONTRAINT 2
+	for(int p=0;p<core_->getNbProducts(); p++){
+		for(int t=1;t<=core_->getNbPeriodes(); t++){
+			model->add(y[p][t-1] + x[p][t] = core_->getD_p_t_scen(p,t,scen)+ y[p][t]);
+		}
+	}
+
+	//CONTRAINT 3
+	for(int t=1;t<=core_->getNbPeriodes(); t++){
+
+
+
+		IloExpr s1(env);
+		IloExpr s2(env);
+
+		for(int p=0;p<core_->getNbProducts(); p++){
+			s1+=x[p][t];
+		}
+		
+		for(int m=0;m<core_->getNbInvestissements(); m++){
+			s2+=core_->getCapUnitaire_m(m) * z[m];
+		}
+
+
+		model->add(l[t] +s1 = s2);
+	}
+
+/*
+IloNumVarArray x(env, nEdges,0,1,ILOFLOAT);
 
 	 //Create the vectors 
 
@@ -38,10 +119,10 @@ void LPF2_Relaxed::create_problem( ListDigraph *g, int *&myNodes,int *&myArcs, i
 
 		char VarName[24];
 
- 		/* initialize this matrix Y[nArcs][NTerminais-1] and Z[nArcs][j=Nterminals-2][NTerminals-2-j] */
+ 		// initialize this matrix Y[nArcs][NTerminais-1] and Z[nArcs][j=Nterminals-2][NTerminals-2-j] 
 		for(int i=0; i< nEdges; i++) {
 
-			 
+			char VarName[24]; 
 			sprintf(VarName, "X_%d", i);
 
 			x[i].setName(VarName);
@@ -241,15 +322,18 @@ void LPF2_Relaxed::create_problem( ListDigraph *g, int *&myNodes,int *&myArcs, i
 
 		 }
 		
-		
+	*/	
 	}
 	catch (IloException& e){
 		 	cerr << " ERREUR : exception = " << e << endl;
 		 }
-
+	
 	env.end();
-
-
+	if(VERBOSE)
+		cout << "\tModelizing the scenario " << scen << " ["<<model_name << "] ... FINISHED" << endl;
+	
+    
+	return true;
 }
 
 

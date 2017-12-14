@@ -48,8 +48,10 @@ class core{
 		int getNbInvestissements() const;
 		int getNbPeriodes() const;
 		int getNbScenarios() const;
-		
-		
+		int getNbMachines() const;
+	//SMART FUCNTIONS
+		int getD_p_t_scen(int & p, int & t, int & scen);
+		int getCapUnitaire_m(int & m);
 		
 	//SET FUNCTIONS
 		void setPeriodes(int & t_);

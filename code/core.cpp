@@ -101,6 +101,12 @@ int core::getNbScenarios() const{
 	
 }
 
+int core::getNbMachines() const{
+	return nb_machines;	
+	
+}
+
+
 void core::addInvestissementsInformation(double t_[5]){
 	
 	vector<double> tmp;
@@ -155,3 +161,12 @@ void core::printInfoProductScenario(){
 
 
 		
+//smart functions
+int core::getD_p_t_scen(int & p, int & t, int & scen){
+	return M_Periodes_Prod_Scen[t-1][p].second[scen];
+}
+
+int core::getCapUnitaire_m(int & m){
+	return M_Investissements[m][2];
+}
+

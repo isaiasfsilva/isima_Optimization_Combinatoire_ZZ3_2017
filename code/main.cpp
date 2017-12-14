@@ -68,6 +68,31 @@ int main(int argc, char **argv){
 		cout << "Reading input file ... Finished!" << endl;		
 	}
 	
+
+	//pour un scenario
+	int scen = 0;
+	{
+		Modelize m;
+		IloCplex cplex;
+		if(!m.create_problem("Mode 1", "output_test.lp",  &c, &cplex, scen)){
+
+ 			cout << "error "<< endl; 
+
+		}
+
+		 //resolution
+		 cplex.solve();
+
+		 cplex.writeSolution("solution_test.txt");
+		 //résultats
+		 cout << " Objectif Function = " << cplex.getObjValue() << endl;
+		 
+
+
+
+
+
+	}
 	//cout << c << endl;
 
 	clock_gettime(CLOCK_MONOTONIC, &finish);

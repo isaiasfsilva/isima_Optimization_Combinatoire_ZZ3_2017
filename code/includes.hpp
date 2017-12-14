@@ -38,6 +38,10 @@ Last update: 06 december 2017
 	//MAIN CLASSES
 #include "core.hpp"
 
+
+#include "modelize.hpp"
+
+
 extern bool VERBOSE;
 	//UTILS
 #include "parserInput.hpp"
