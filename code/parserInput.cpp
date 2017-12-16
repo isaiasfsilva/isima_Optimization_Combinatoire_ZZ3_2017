@@ -105,7 +105,7 @@ bool parserInput::readFile(char* f, core *core_){
 	//Read the product prices
 	for(int i=0;i<core_->getNbProducts(); i++){
 			file >> d_temp;
-			core_->addProductionPrice(d_temp);
+			core_->addProductPrice(d_temp);
 	}
 	
 	//Read the Amortissement

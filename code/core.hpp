@@ -49,9 +49,15 @@ class core{
 		int getNbPeriodes() const;
 		int getNbScenarios() const;
 		int getNbMachines() const;
+
 	//SMART FUCNTIONS
 		int getD_p_t_scen(int & p, int & t, int & scen);
 		int getCapUnitaire_m(int & m);
+		int getProductPrice(int & p) const;
+		int getInvestissementPrice(int & p) const;
+
+		int getProductionPrice(int & p) const;
+		
 		
 	//SET FUNCTIONS
 		void setPeriodes(int & t_);
@@ -64,7 +70,7 @@ class core{
 		void setAmortissement(double & t_);		
 		void addInvestissementsInformation(double t_[5]);
 		
-		void addProductionPrice(double & t_);
+		void addProductPrice(double & t_);
 		void addInfoProductScenario(vector<pair<string,vector<double> > > & d);
 		
 	//PRINT FUNCTIONS

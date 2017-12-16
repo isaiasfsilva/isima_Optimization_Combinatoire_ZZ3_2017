@@ -15,7 +15,8 @@ PURPOSE:Practical activity of combinatorial Optimization
 DESCRIPTION:
 		This is .cpp file of the model creator of this project
 
-Last update: 14 december 2017
+Last update: 16 december 2017
+
 */
 
 
@@ -44,13 +45,18 @@ bool Modelize::create_problem(string model_name, string out_file,  core *core_,I
 	try{
 	 
 	
-	cplex->exportModel("qsdughqsyudgqsyud.lp");
+	
 
 //CREATING VARIABLES
 
-	NumVarMatrix x(env,core_->getNbProducts());
-	for(int i=0;i<core_->getNbProducts(); i++)
-		x[i]=IloNumVarArray(env,core_->getNbPeriodes(),0,IloInfinity,ILOINT);
+	NumVar3Matrix x(env,core_->getNbProducts());
+	for(int i=0;i<core_->getNbProducts(); i++){
+		x[i] = NumVarMatrix(env, core_->getNbPeriodes()+1);
+		for (int j = 1; j < core_->getNbPeriodes()+1; ++j){
+			x[i][j] = IloNumVarArray(env,core_->getNbMachines(),0,IloInfinity,ILOINT);
+		}
+	}
+		
 
 	NumVarMatrix y(env,core_->getNbProducts());
 	for(int i=0;i<core_->getNbProducts(); i++)
@@ -59,279 +65,209 @@ bool Modelize::create_problem(string model_name, string out_file,  core *core_,I
 
 	NumVarMatrix z(env,core_->getNbInvestissements());
 	for(int i=0;i<core_->getNbInvestissements(); i++)
-		z[i]=IloNumVarArray(env,core_->nb_machines(),0,1,ILOINT);
+		z[i]=IloNumVarArray(env,core_->getNbMachines(),0,1,ILOINT);
 
-	IloNumVarArray l(env, core_->getNbPeriodes()+1,0,IloInfinity,ILOINT);
+	NumVarMatrix l(env,core_->getNbPeriodes()+1);
+	for (int j = 1; j < core_->getNbPeriodes()+1; ++j){
+		l[j]=IloNumVarArray(env,core_->getNbMachines(),0,IloInfinity,ILOINT);
+	}
 
 
+	NumVar3Matrix r(env,core_->getNbInvestissements());
+	for(int i=0;i<core_->getNbInvestissements(); i++){
+		r[i] = NumVarMatrix(env, core_->getNbPeriodes()+1);
+		for (int j = 1; j < core_->getNbPeriodes()+1; ++j){
+			r[i][j] = IloNumVarArray(env,core_->getNbMachines(),0,IloInfinity,ILOINT);
+		}
+	}
+	
 
-
-//CREATING THE CONTRAINTS
+//CREATING THE CONSTRAINTS
 	// CONTRAINT 2
 	for(int p=0;p<core_->getNbProducts(); p++){
 		for(int t=1;t<=core_->getNbPeriodes(); t++){
-			model->add(y[p][t-1] + x[p][t] = core_->getD_p_t_scen(p,t,scen)+ y[p][t]);
+			IloExpr s_c1(env);
+
+			for(int ii=0; ii<core_->getNbMachines(); ii++){
+				s_c1+=x[p][t][ii];
+			}
+			
+			
+			model->add(y[p][t-1] + s_c1 - core_->getD_p_t_scen(p,t,scen) ==  y[p][t]);
 		}
 	}
 
-	//CONTRAINT 3
+	//CONSTRAINT 3
 	for(int t=1;t<=core_->getNbPeriodes(); t++){
 
 
 
-		IloExpr s1(env);
-		IloExpr s2(env);
+		IloExpr s_c2a(env);
+		IloExpr s_c2b(env);
+		IloExpr s_c2c(env);
 
 		for(int p=0;p<core_->getNbProducts(); p++){
-			s1+=x[p][t];
+			for(int ii=0; ii<core_->getNbMachines(); ii++){
+				s_c2a+=x[p][t][ii];
+			}
+			
 		}
 		
 		for(int m=0;m<core_->getNbInvestissements(); m++){
-			s2+=core_->getCapUnitaire_m(m) * z[m];
+			for(int ii=0; ii<core_->getNbMachines(); ii++){
+				s_c2b+= core_->getCapUnitaire_m(m) * z[m][ii];
+			}
+			
 		}
 
+		for(int ii=0; ii<core_->getNbMachines(); ii++){
+			s_c2c+=l[t][ii];
+		}
+		model->add(s_c2c +s_c2a - s_c2b == 0);
+	}
+	
 
-		model->add(l[t] +s1 = s2);
+	//CONSTRAINT 3.1
+
+
+	    IloExpr s_c3(env);
+		for(int m=0;m<core_->getNbInvestissements(); m++){
+			for(int ii=0; ii<core_->getNbMachines(); ii++){
+				s_c3+=z[m][ii];
+			}
+			
+		}
+
+		model->add(s_c3<=10);
+
+
+
+
+	//CONSTRAINT 8
+		for(int t=1;t<=core_->getNbPeriodes(); t++){
+			for(int m=0;m<core_->getNbInvestissements(); m++){
+				for(int ii=0; ii<core_->getNbMachines(); ii++){
+					model->add(r[m][t][ii]<=core_->getCapUnitaire_m(m) * z[m][ii]);
+				}
+				
+			}
+		}
+
+	//CONSTRAINT 9
+	for(int t=1;t<=core_->getNbPeriodes(); t++){
+
+
+
+		IloExpr s_c9a(env);
+		IloExpr s_c9b(env);
+
+		for(int p=0;p<core_->getNbProducts(); p++){
+			for(int ii=0; ii<core_->getNbMachines(); ii++){
+				s_c9a+=x[p][t][ii];
+			}
+			
+		}
+		
+		for(int m=0;m<core_->getNbInvestissements(); m++){
+			for(int ii=0; ii<core_->getNbMachines(); ii++){
+				s_c9b+= r[m][t][ii];
+			}
+			
+		}
+		model->add(s_c9a == s_c9b);
 	}
 
-/*
-IloNumVarArray x(env, nEdges,0,1,ILOFLOAT);
-
-	 //Create the vectors 
 
 
-//Constraint: 11.8
-//Constraint: 11.7
-	 	
-	 	//Vector X[nArcs] = Se we'll use the arc or not
-	 	IloNumVarArray x(env, nEdges,0,1,ILOFLOAT);
+//--------------------OBJECTIF FUNCTION -------------------
+	//vent price
+	IloExpr OBJ_1a(env);
 
-		//Vector Z(i,j,kl) - common Flot
-		NumVar3Matrix z(env,nEdges);
+	for(int p=0;p<core_->getNbProducts(); p++){
+		for(int t=1;t<=core_->getNbPeriodes(); t++){
+			OBJ_1a+=core_->getD_p_t_scen(p,t,scen) * core_->getProductPrice(p);
+		}
+	}
 
-		//Vector Y(i,j,k) - Flot from 1 for a specific terminal K
-		NumVarMatrix y(env,nEdges);
-
-//Objectif function
-		IloExpr objectifExp(env);
-		
-
-
-		char VarName[24];
-
- 		// initialize this matrix Y[nArcs][NTerminais-1] and Z[nArcs][j=Nterminals-2][NTerminals-2-j] 
-		for(int i=0; i< nEdges; i++) {
-
-			char VarName[24]; 
-			sprintf(VarName, "X_%d", i);
-
-			x[i].setName(VarName);
-			
-			//C(ij)*X(ij)
-	
-
-			
-			y[i]=IloNumVarArray(env,nNodes,0.0,1.0,ILOFLOAT);
-		  	z[i] = NumVarMatrix(env, nNodes);
-			
-
-
-			for(int k=0; k< nNodes; k++) {
-
-				//Define Y name
-				sprintf(VarName, "Y_%d_%d", i,k);
-				y[i][k].setName(VarName);
-
-				//Create Z
-		    	z[i][k] = IloNumVarArray(env, nNodes,0.0,1.0,ILOFLOAT);
-
-
-		    	
-
-		    	for(int l=0;l<nNodes;l++){
-
-			    	//just the name of each element of Z
-			    	sprintf(VarName, "Z_%d_%d_%d", i,k,l);
-					z[i][k][l].setName(VarName);
-
-		    	}
-			}
-			
-		 }
-
-
-
-
-		////BEGIN CONTRAINTES
-		for(int i=0; i< nEdges; i++) {
-
-		
-			
-			//C(ij)*X(ij)
-			objectifExp+=myArcs[i]*x[i];
-
-
-			for(int k=1; k< nTerminals-1; k++) {
-		    	
-
-		    	for(int l=k+1;l<nTerminals;l++){
-
-			    	//just the name of each element of Z
-			    	
-//Constraint: 11.3
-		    		model->add(z[i][myNodes[k]][myNodes[l]]<=y[i][myNodes[k]]);
-
-//Constraint: 11.4
-		    		model->add(z[i][myNodes[k]][myNodes[l]]<=y[i][myNodes[l]]);
-
-//Constraint: 11.5
-		    		model->add(y[i][myNodes[k]] + y[i][myNodes[l]] - z[i][myNodes[k]][myNodes[l]] <= x[i]);
-		    	}
+	//fabrication cost
+	IloExpr OBJ_1b(env);
+	for(int t=1;t<=core_->getNbPeriodes(); t++){
+		for(int m=0;m<core_->getNbInvestissements(); m++){
+			for(int ii=0; ii<core_->getNbMachines(); ii++){
+				OBJ_1b +=r[m][t][ii] * core_->getProductionPrice(m);
 			}
 			
 		}
+	}
 
+	//stockage
+	IloExpr OBJ_1c(env);
 
-
-//Add Objectif Function
-		 model->add(IloMinimize(env, objectifExp) );
-
-
-
-
-
-//Revision 1 - OK
-//Constraint: 11.6
-		for(int i=nTerminals; i<nNodes;i++){
-		 	//Restriction for node i
-		 	//incoming arcs
-		 	IloExpr incArcs(env);
-		 	//outcomiung arcs
-		 	IloExpr outArcs(env);
-
-
-
-
-
-		 	//Define the incoming arcs
-		 	for(ListDigraph::InArcIt a(*g, g->nodeFromId(myNodes[i])); a!=INVALID; ++a){
-		 		incArcs+=x[g->id(a)];
-
-		 	}
-
-		 	//Define the outcoming arcs
-		 	for(ListDigraph::OutArcIt a(*g, g->nodeFromId(myNodes[i])); a!=INVALID; ++a){
-		 		outArcs+=x[g->id(a)];
-
-		 	}
-
-		 	//Add restriction
-		 	model->add(incArcs - outArcs <= 0.0);
-		
-
-
+	for(int p=0;p<core_->getNbProducts(); p++){
+		for(int t=1;t<=core_->getNbPeriodes(); t++){
+			OBJ_1c+=11*y[p][t];
 		}
-
-//REVISED ok
-//Constraint 11.1 
-		 //start from 1 to ignore the root node
-		for(int i=1;  i< nNodes; i++){
-
-		 	for(int t=1; t< nTerminals; t++) {
-		 		
-		 		//Restriction for node i
-			 	//incoming arcs
-			 	IloExpr incArcs2(env);
-			 	//outcomiung arcs
-			 	IloExpr outArcs2(env);
-
-			 		 	//Define the incoming arcs
-			 	for(ListDigraph::InArcIt a(*g, g->nodeFromId(myNodes[i])); a!=INVALID; ++a){
-			 		incArcs2+=y[g->id(a)][myNodes[t]];
-
-			 	}
-
-			 	//Define the outcoming arcs
-			 	for(ListDigraph::OutArcIt a(*g, g->nodeFromId(myNodes[i])); a!=INVALID; ++a){
-			 		outArcs2+=y[g->id(a)][myNodes[t]];
-
-			 	}
-
-			 	//Add restriction
-			 	int r = (i==t)?1.0:0.0;
-			 	model->add(incArcs2 - outArcs2 == r);
-		 	}
-			 	
-
-		}
+	}
 
 
-//Constraint 11.2 
-		 for(int i=0;  i< nNodes; i++){
-		 
-		 	for(int k=1; k<nTerminals-1; k++) {
-			    	
-			    for(int l=k+1;l<nTerminals;l++){
-		 		
-			 		//Restriction for node i
-				 	//incoming arcs
-				 	IloExpr incArcs3(env);
-				 	//outcomiung arcs
-				 	IloExpr outArcs3(env);
+	//initial stock
+	IloExpr OBJ_1d(env);
 
-				 		 	//Define the incoming arcs
-				 	for(ListDigraph::InArcIt a(*g, g->nodeFromId(myNodes[i])); a!=INVALID; ++a){
-				 		incArcs3+=z[g->id(a)][myNodes[k]][myNodes[l]];
-
-				 	}
-
-				 	//Define the outcoming arcs
-				 	for(ListDigraph::OutArcIt a(*g, g->nodeFromId(myNodes[i])); a!=INVALID; ++a){
-				 		outArcs3+=z[g->id(a)][myNodes[k]][myNodes[l]];
-
-				 	}
-
-				 	//Add restriction
-				 	int r = (i==0)?-1.0:0.0;
-				 	model->add(incArcs3 - outArcs3 >= r);
-		 		}
-		 	}
-			 	
-
-		 }
-
-
-
+	for(int p=0;p<core_->getNbProducts(); p++){
 	
-		 IloCplex cplex(*model);
+			OBJ_1d+=11*y[p][0];
 
-		 //Export the model
-		 cplex.exportModel("model_exp.lp");
-		 //resolution
-		 cplex.solve();
+	}
 
 
-		 cplex.writeSolution("sol.txt");
+	//investiment cost
+	IloExpr OBJ_1e(env);
+
+	for(int p=0;p<core_->getNbInvestissements(); p++){
+		for(int ii=0; ii<core_->getNbMachines(); ii++){
+			OBJ_1e+=core_->getInvestissementPrice(p)*z[p][ii];
+		}
+			
+
+	}
+
+	//stockage
+	IloExpr OBJ_1f(env);
+
+	for(int p=0;p<core_->getNbMachines(); p++){
+		for(int t=1;t<=core_->getNbPeriodes(); t++){
+			OBJ_1f+=15*l[t][p];
+		}
+	}
+
+
+
+
+	IloExpr OBJ_GLOBAL(env);
+
+	OBJ_GLOBAL = OBJ_1a - OBJ_1b - OBJ_1c - OBJ_1d - OBJ_1e - OBJ_1f;
+	model->add(IloMaximize(env, OBJ_GLOBAL) );
+
+		cplex->exportModel("qsdughqsyudgqsyud.lp");
+
+
+		 cplex->solve();
+
+		 cplex->writeSolution("solution_test.txt");
 		 //résultats
-		 cout << " Objectif Function = " << cplex.getObjValue() << endl;
-		 
-		 cout << "Solution:" << endl;
-		 for(int i=0; i< nEdges; i++) {
-		 	if(cplex.getValue(x[i])>0)
-		 		cout << "\tX[" << i << "] = "<< cplex.getValue(x[i]) <<";" << endl;
-
-		 }
-		
-	*/	
+		 cout << " Objectif Function = " << cplex->getObjValue() << endl;
+		if(VERBOSE)
+			cout << "\tModelizing the scenario " << scen << " ["<<model_name << "] ... OK" << endl;
 	}
 	catch (IloException& e){
-		 	cerr << " ERREUR : exception = " << e << endl;
+		cerr << " ERREUR : exception = " << e << endl;
+			if(VERBOSE)
+				cout << "\tModelizing the scenario " << scen << " ["<<model_name << "] ... ERROR" << endl;
+	
 		 }
 	
 	env.end();
-	if(VERBOSE)
-		cout << "\tModelizing the scenario " << scen << " ["<<model_name << "] ... FINISHED" << endl;
-	
+
     
 	return true;
 }

@@ -59,7 +59,7 @@ void core::setStockCapacity(int & t_){
 }
 
 
-void core::addProductionPrice(double & t_){
+void core::addProductPrice(double & t_){
 	vente.push_back(t_);
 
 	
@@ -170,3 +170,14 @@ int core::getCapUnitaire_m(int & m){
 	return M_Investissements[m][2];
 }
 
+int core::getProductPrice(int & p) const{
+	return vente[p];
+}
+
+int core::getInvestissementPrice(int & p) const{
+	return M_Investissements[p][3];
+}
+
+int core::getProductionPrice(int & p) const{
+	return M_Investissements[p][4];
+}

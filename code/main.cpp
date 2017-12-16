@@ -79,13 +79,13 @@ int main(int argc, char **argv){
  			cout << "error "<< endl; 
 
 		}
-
+//cplex.exportModel("m.lp");
 		 //resolution
-		 cplex.solve();
+		 //cplex.solve();
 
-		 cplex.writeSolution("solution_test.txt");
+		// cplex.writeSolution("solution_test.txt");
 		 //résultats
-		 cout << " Objectif Function = " << cplex.getObjValue() << endl;
+		// cout << " Objectif Function = " << cplex.getObjValue() << endl;
 		 
 
 
