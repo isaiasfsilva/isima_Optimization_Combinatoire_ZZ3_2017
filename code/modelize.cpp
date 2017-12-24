@@ -30,243 +30,250 @@ using namespace std;
 typedef IloArray<IloNumVarArray> NumVarMatrix;
 typedef IloArray<NumVarMatrix>   NumVar3Matrix;
 
+typedef IloArray<IloNumArray> NumMatrix;
 
-bool Modelize::create_problem(string model_name, string out_file,  core *core_,IloCplex *cplex, int scen = 0){
+bool Modelize::solve(string sol_file){
+	cplex->solve();
+	cplex->writeSolution(sol_file.c_str());
+
+//RESULTS
+	cout << " Objectif Function = " << cplex->getObjValue() << endl;
+}
+
+bool Modelize::create_problem(string model_name, string out_file){
 
 	if(VERBOSE)
 		cout << "\tModelizing the scenario " << scen << " ["<<model_name << "]" << endl;
 
-    IloEnv env;
-	IloModel *model;
 
-	model = new IloModel(env, "bajbasdabsd");
+	//string buffer
+	char VarName[54];
+
+	sprintf(VarName,model_name.c_str());
+	env = new IloEnv();
+	model = new IloModel(*env, VarName);
 	cplex = new IloCplex(*model);
-
+	
 	try{
 	 
 	
 	
 
-//CREATING VARIABLES
+	//CREATING VARIABLES
 
-	NumVar3Matrix x(env,core_->getNbProducts());
-	for(int i=0;i<core_->getNbProducts(); i++){
-		x[i] = NumVarMatrix(env, core_->getNbPeriodes()+1);
-		for (int j = 1; j < core_->getNbPeriodes()+1; ++j){
-			x[i][j] = IloNumVarArray(env,core_->getNbMachines(),0,IloInfinity,ILOINT);
+		NumVarMatrix x(*env,core_->getNbProducts());
+		for(int i=0;i<core_->getNbProducts(); i++){
+			x[i] = IloNumVarArray(*env, core_->getNbPeriodes()+1,0,IloInfinity,ILOINT);
+			for(int t=0;t<=core_->getNbPeriodes(); t++){
+				sprintf(VarName, "X[product=%d ; periode=%d]", i,t);
+				x[i][t].setName(VarName);
+			}
 		}
-	}
+			
+
+		NumVarMatrix y(*env,core_->getNbProducts());
+		for(int i=0;i<core_->getNbProducts(); i++){
+			y[i]=IloNumVarArray(*env,core_->getNbPeriodes()+1,0,IloInfinity,ILOINT);
+			for(int t=0;t<=core_->getNbPeriodes(); t++){
+				sprintf(VarName, "Y[product=%d ; periode=%d]", i,t);
+				y[i][t].setName(VarName);
+			}
+		}
+
+		NumVarMatrix z(*env,core_->getNbInvestissements());
+		for(int i=0;i<core_->getNbInvestissements(); i++){
+			z[i]=IloNumVarArray(*env,core_->getNbMachines(),0,1,ILOINT);
+
+			for(int t=0;t<core_->getNbMachines(); t++){
+				sprintf(VarName, "Z[investiment=%d ; machine=%d]", i,t);
+				z[i][t].setName(VarName);
+			}
+		}
+
+		IloNumVarArray l(*env,core_->getNbPeriodes()+1,0,IloInfinity,ILOINT);
+		
+		for(int t=0;t<=core_->getNbPeriodes(); t++){
+			sprintf(VarName, "L[periode=%d]", t);
+			l[t].setName(VarName);
+		}
+
+
+		NumVarMatrix r(*env,core_->getNbInvestissements());
+		for(int i=0;i<core_->getNbInvestissements(); i++){
+			r[i] = IloNumVarArray(*env, core_->getNbPeriodes()+1,0,IloInfinity,ILOINT);
+			for(int t=0;t<=core_->getNbPeriodes(); t++){
+				sprintf(VarName, "R[investiment=%d ; periode=%d]", i,t);
+				r[i][t].setName(VarName);
+			}
+		}
 		
 
-	NumVarMatrix y(env,core_->getNbProducts());
-	for(int i=0;i<core_->getNbProducts(); i++)
-		y[i]=IloNumVarArray(env,core_->getNbPeriodes()+1,0,IloInfinity,ILOINT);
-
-
-	NumVarMatrix z(env,core_->getNbInvestissements());
-	for(int i=0;i<core_->getNbInvestissements(); i++)
-		z[i]=IloNumVarArray(env,core_->getNbMachines(),0,1,ILOINT);
-
-	NumVarMatrix l(env,core_->getNbPeriodes()+1);
-	for (int j = 1; j < core_->getNbPeriodes()+1; ++j){
-		l[j]=IloNumVarArray(env,core_->getNbMachines(),0,IloInfinity,ILOINT);
-	}
-
-
-	NumVar3Matrix r(env,core_->getNbInvestissements());
-	for(int i=0;i<core_->getNbInvestissements(); i++){
-		r[i] = NumVarMatrix(env, core_->getNbPeriodes()+1);
-		for (int j = 1; j < core_->getNbPeriodes()+1; ++j){
-			r[i][j] = IloNumVarArray(env,core_->getNbMachines(),0,IloInfinity,ILOINT);
-		}
-	}
-	
-
-//CREATING THE CONSTRAINTS
-	// CONTRAINT 2
-	for(int p=0;p<core_->getNbProducts(); p++){
-		for(int t=1;t<=core_->getNbPeriodes(); t++){
-			IloExpr s_c1(env);
-
-			for(int ii=0; ii<core_->getNbMachines(); ii++){
-				s_c1+=x[p][t][ii];
-			}
-			
-			
-			model->add(y[p][t-1] + s_c1 - core_->getD_p_t_scen(p,t,scen) ==  y[p][t]);
-		}
-	}
-
-	//CONSTRAINT 3
-	for(int t=1;t<=core_->getNbPeriodes(); t++){
-
-
-
-		IloExpr s_c2a(env);
-		IloExpr s_c2b(env);
-		IloExpr s_c2c(env);
-
+	//CREATING THE CONSTRAINTS
+		// CONTRAINT 2
 		for(int p=0;p<core_->getNbProducts(); p++){
-			for(int ii=0; ii<core_->getNbMachines(); ii++){
-				s_c2a+=x[p][t][ii];
+			for(int t=1;t<=core_->getNbPeriodes(); t++){
+				model->add(y[p][t-1] + x[p][t] - core_->getD_p_t_scen(p,t,scen) ==  y[p][t]);
 			}
+		}
+
+		//CONSTRAINT 3
+		for(int t=1;t<=core_->getNbPeriodes(); t++){
+
+
+
+			IloExpr s_c2a(*env);
+			IloExpr s_c2b(*env);
+			IloExpr s_c2c(*env);
+
+
 			
+			for(int m=0;m<core_->getNbInvestissements(); m++){
+				for(int ii=0; ii<core_->getNbMachines(); ii++){		
+					s_c2b+= core_->getCapUnitaire_m(m) * z[m][ii];
+				}
+				
+			}
+			for(int p=0;p<core_->getNbProducts(); p++){
+				s_c2a+=x[p][t];
+			}
+			s_c2c+=l[t];
+			model->add(s_c2c +s_c2a - s_c2b == 0);
 		}
 		
-		for(int m=0;m<core_->getNbInvestissements(); m++){
-			for(int ii=0; ii<core_->getNbMachines(); ii++){
-				s_c2b+= core_->getCapUnitaire_m(m) * z[m][ii];
-			}
-			
-		}
 
-		for(int ii=0; ii<core_->getNbMachines(); ii++){
-			s_c2c+=l[t][ii];
-		}
-		model->add(s_c2c +s_c2a - s_c2b == 0);
-	}
-	
-
-	//CONSTRAINT 3.1
+		//CONSTRAINT 3.1
 
 
-	    IloExpr s_c3(env);
-		for(int m=0;m<core_->getNbInvestissements(); m++){
-			for(int ii=0; ii<core_->getNbMachines(); ii++){
-				s_c3+=z[m][ii];
-			}
-			
-		}
-
-		model->add(s_c3<=10);
-
-
-
-
-	//CONSTRAINT 8
-		for(int t=1;t<=core_->getNbPeriodes(); t++){
+		    IloExpr s_c3(*env);
 			for(int m=0;m<core_->getNbInvestissements(); m++){
 				for(int ii=0; ii<core_->getNbMachines(); ii++){
-					model->add(r[m][t][ii]<=core_->getCapUnitaire_m(m) * z[m][ii]);
+					s_c3+=z[m][ii];
 				}
+				
+			}
+
+			model->add(s_c3<=10);
+
+
+
+
+		//CONSTRAINT 8
+			for(int t=1;t<=core_->getNbPeriodes(); t++){
+				for(int m=0;m<core_->getNbInvestissements(); m++){
+					IloExpr s_c8a(*env);
+					
+
+					for(int ii=0; ii<core_->getNbMachines(); ii++){
+						s_c8a+=core_->getCapUnitaire_m(m) * z[m][ii];
+						
+					}
+					model->add(r[m][t]<=s_c8a);
+				}
+			}
+
+		//CONSTRAINT 9
+		for(int t=1;t<=core_->getNbPeriodes(); t++){
+
+
+
+			IloExpr s_c9a(*env);
+			IloExpr s_c9b(*env);
+
+			for(int p=0;p<core_->getNbProducts(); p++){			
+				s_c9a+=x[p][t];			
+			}
+			
+			for(int m=0;m<core_->getNbInvestissements(); m++){
+				s_c9b+= r[m][t];			
+			}
+
+			model->add(s_c9a == s_c9b);
+		}
+
+
+
+	//--------------------OBJECTIF FUNCTION -------------------
+		//vent price
+		IloExpr OBJ_1a(*env);
+
+		for(int p=0;p<core_->getNbProducts(); p++){
+			for(int t=1;t<=core_->getNbPeriodes(); t++){
+				OBJ_1a+=core_->getD_p_t_scen(p,t,scen) * core_->getProductPrice(p);
+			}
+		}
+
+		//fabrication cost
+		IloExpr OBJ_1b(*env);
+		for(int t=1;t<=core_->getNbPeriodes(); t++){
+			for(int m=0;m<core_->getNbInvestissements(); m++){
+				OBJ_1b +=r[m][t]* core_->getProductionPrice(m);
 				
 			}
 		}
 
-	//CONSTRAINT 9
-	for(int t=1;t<=core_->getNbPeriodes(); t++){
-
-
-
-		IloExpr s_c9a(env);
-		IloExpr s_c9b(env);
+		//stockage
+		IloExpr OBJ_1c(*env);
 
 		for(int p=0;p<core_->getNbProducts(); p++){
-			for(int ii=0; ii<core_->getNbMachines(); ii++){
-				s_c9a+=x[p][t][ii];
+			for(int t=1;t<=core_->getNbPeriodes(); t++){
+				OBJ_1c+=11*y[p][t];
 			}
-			
+		}
+
+
+		//initial stock
+		IloExpr OBJ_1d(*env);
+
+		for(int p=0;p<core_->getNbProducts(); p++){
+		
+				OBJ_1d+=1000*y[p][0];
+
+		}
+
+
+		//investiment cost
+		IloExpr OBJ_1e(*env);
+
+		for(int p=0;p<core_->getNbInvestissements(); p++){
+			for(int ii=0; ii<core_->getNbMachines(); ii++){
+				OBJ_1e+=core_->getInvestissementPrice(p)*z[p][ii];
+			}
+				
+
+		}
+
+		//stockage
+		IloExpr OBJ_1f(*env);
+
+		for(int t=1;t<=core_->getNbPeriodes(); t++){
+			OBJ_1f+=15*l[t];
 		}
 		
-		for(int m=0;m<core_->getNbInvestissements(); m++){
-			for(int ii=0; ii<core_->getNbMachines(); ii++){
-				s_c9b+= r[m][t][ii];
-			}
-			
-		}
-		model->add(s_c9a == s_c9b);
-	}
 
 
 
-//--------------------OBJECTIF FUNCTION -------------------
-	//vent price
-	IloExpr OBJ_1a(env);
+		IloExpr OBJ_GLOBAL(*env);
 
-	for(int p=0;p<core_->getNbProducts(); p++){
-		for(int t=1;t<=core_->getNbPeriodes(); t++){
-			OBJ_1a+=core_->getD_p_t_scen(p,t,scen) * core_->getProductPrice(p);
-		}
-	}
+		OBJ_GLOBAL = OBJ_1a - OBJ_1b - OBJ_1c - OBJ_1d - OBJ_1e - OBJ_1f;
+		model->add(IloMaximize(*env, OBJ_GLOBAL) );
 
-	//fabrication cost
-	IloExpr OBJ_1b(env);
-	for(int t=1;t<=core_->getNbPeriodes(); t++){
-		for(int m=0;m<core_->getNbInvestissements(); m++){
-			for(int ii=0; ii<core_->getNbMachines(); ii++){
-				OBJ_1b +=r[m][t][ii] * core_->getProductionPrice(m);
-			}
-			
-		}
-	}
-
-	//stockage
-	IloExpr OBJ_1c(env);
-
-	for(int p=0;p<core_->getNbProducts(); p++){
-		for(int t=1;t<=core_->getNbPeriodes(); t++){
-			OBJ_1c+=11*y[p][t];
-		}
-	}
+	//EXPORTING MODEL TO FILE
+		cplex->exportModel(out_file.c_str());
+		    
 
 
-	//initial stock
-	IloExpr OBJ_1d(env);
-
-	for(int p=0;p<core_->getNbProducts(); p++){
-	
-			OBJ_1d+=11*y[p][0];
-
-	}
-
-
-	//investiment cost
-	IloExpr OBJ_1e(env);
-
-	for(int p=0;p<core_->getNbInvestissements(); p++){
-		for(int ii=0; ii<core_->getNbMachines(); ii++){
-			OBJ_1e+=core_->getInvestissementPrice(p)*z[p][ii];
-		}
-			
-
-	}
-
-	//stockage
-	IloExpr OBJ_1f(env);
-
-	for(int p=0;p<core_->getNbMachines(); p++){
-		for(int t=1;t<=core_->getNbPeriodes(); t++){
-			OBJ_1f+=15*l[t][p];
-		}
-	}
-
-
-
-
-	IloExpr OBJ_GLOBAL(env);
-
-	OBJ_GLOBAL = OBJ_1a - OBJ_1b - OBJ_1c - OBJ_1d - OBJ_1e - OBJ_1f;
-	model->add(IloMaximize(env, OBJ_GLOBAL) );
-
-		cplex->exportModel("qsdughqsyudgqsyud.lp");
-
-
-		 cplex->solve();
-
-		 cplex->writeSolution("solution_test.txt");
-		 //résultats
-		 cout << " Objectif Function = " << cplex->getObjValue() << endl;
 		if(VERBOSE)
 			cout << "\tModelizing the scenario " << scen << " ["<<model_name << "] ... OK" << endl;
-	}
-	catch (IloException& e){
+	
+	}catch (IloException& e){
 		cerr << " ERREUR : exception = " << e << endl;
 			if(VERBOSE)
 				cout << "\tModelizing the scenario " << scen << " ["<<model_name << "] ... ERROR" << endl;
 	
 		 }
-	
-	env.end();
+
+
+	//env->end();
 
     
 	return true;

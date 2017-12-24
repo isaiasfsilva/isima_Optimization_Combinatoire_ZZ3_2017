@@ -15,7 +15,7 @@ PURPOSE:Practical activity of combinatorial Optimization
 DESCRIPTION:
 		This is the main file of this project
 
-Last update: 06 december 2017
+Last update: 24 december 2017
 */
 
 
@@ -70,30 +70,36 @@ int main(int argc, char **argv){
 	
 
 	//pour un scenario
-	int scen = 0;
-	{
-		Modelize m;
-		IloCplex cplex;
-		if(!m.create_problem("Mode 1", "output_test.lp",  &c, &cplex, scen)){
+	for(int scen=0; scen<c.getNbScenarios();scen++){
+		if(VERBOSE)
+			cout << "Modeling to the scenary [ "<< scen << "]" << endl;
+		char t[100];
+		
 
- 			cout << "error "<< endl; 
 
+		Modelize m(&c,scen);
+
+		//setting up filenames
+		sprintf(t, "Individual SCENARIO[%d]", scen);
+		string name=t;
+		sprintf(t, "outputs/model_SCENARIO[%d].lp", scen);
+		string model_file=t;
+		if(!m.create_problem(name, model_file)){
+
+ 			cout << "Fatal error ... Sorry "<< endl; 
+ 			exit(1);
 		}
-//cplex.exportModel("m.lp");
-		 //resolution
-		 //cplex.solve();
 
-		// cplex.writeSolution("solution_test.txt");
-		 //résultats
-		// cout << " Objectif Function = " << cplex.getObjValue() << endl;
+		 //solving
+		sprintf(t, "outputs/solution_SCENARIO[%d].txt", scen);
+		string sol_file= t;
+		 m.solve(sol_file);
+
 		 
 
 
-
-
-
 	}
-	//cout << c << endl;
+
 
 	clock_gettime(CLOCK_MONOTONIC, &finish);
     double timeTot =time_interval(start, finish);

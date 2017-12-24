@@ -15,7 +15,7 @@ PURPOSE:Practical activity of combinatorial Optimization
 DESCRIPTION:
 		This is .hpp file of the model creator of this project
 
-Last update: 14 december 2017
+Last update: 24 december 2017
 */
 
 #ifndef DEFINE_MODELIZER
@@ -30,9 +30,20 @@ using namespace std;
 
 
 class Modelize{
+	private:
+		int scen;
+	//variables
+	public:
+		IloCplex *cplex;
+		IloEnv *env; 
+		IloModel *model;
+		core *core_;
+
 	public:	
-		Modelize(){};	
-		bool create_problem(string model_name, string out_file,  core *core_, IloCplex *cplex, int scen);
+		Modelize(core *core, int scen_=0):scen(scen_),core_(core){};	
+
+		bool create_problem(string model_name, string out_file);
+		bool solve(string sol_file);
 		
 };
 

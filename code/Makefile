@@ -41,8 +41,8 @@ CPLEXLIBDIR = $(CPLEXDIR)/lib/$(SYSTEM)/$(LIBFORMAT)
 CONCERTLIBDIR = $(CONCERTDIR)/lib/$(SYSTEM)/$(LIBFORMAT)
 
 CPLEXFLAGS = -I$(CPLEXDIR)/include -I$(CONCERTDIR)/include -L$(CPLEXLIBDIR)  -lilocplex -lcplex -L$(CONCERTLIBDIR) -lconcert -lm -m64 -lpthread 
-CFLAGS = -O3 -Wall -ansi -pedantic -DIL_STD
-CC = g++ -Dcpp_variable
+CFLAGS = -std=c++0x -O3 -Wall -ansi -pedantic -DIL_STD
+CC = g++  -Dcpp_variable
 DEBUG = -pg -g -Wall -ansi -DIL_STD -pedantic
 OBJECTS = main.o  parserInput.o core.o modelize.o #liste de tous les .o a creer a partir des .c
 

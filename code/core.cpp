@@ -167,7 +167,7 @@ int core::getD_p_t_scen(int & p, int & t, int & scen){
 }
 
 int core::getCapUnitaire_m(int & m){
-	return M_Investissements[m][2];
+	return M_Investissements[m][1];
 }
 
 int core::getProductPrice(int & p) const{
@@ -175,9 +175,9 @@ int core::getProductPrice(int & p) const{
 }
 
 int core::getInvestissementPrice(int & p) const{
-	return M_Investissements[p][3];
+	return M_Investissements[p][2];
 }
 
 int core::getProductionPrice(int & p) const{
-	return M_Investissements[p][4];
+	return M_Investissements[p][3];
 }
