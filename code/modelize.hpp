@@ -41,6 +41,7 @@ class Modelize{
 		core *core_;
 	//variables
 		vector<int> solution_x;
+		double objValue;
 	public:
 		IloCplex *cplex;
 		IloEnv *env; 
@@ -49,9 +50,20 @@ class Modelize{
 
 	public:	
 		Modelize(core *core, int scen_=0):scen(scen_),core_(core){};	
-
 		bool create_individual_problem(string model_name, string out_file, string sol_file);
 		bool create_individual_problem(string model_name, string out_file, string sol_file,const  vector<int>& sol_);
+
+// ====================================================
+//   THIS PART IS IMPORTANT. I'VE CHANGED THE METHOD 
+//  BECAUSE WE'RE WORKING WITH DIFFERENT SCENARIES... 
+//   MIN MAX in THIS CASE is equivalent to MAX MIN 
+// ====================================================	
+		bool create_MAXMINABSOLUT_problem(string model_name, string out_file, string sol_file);
+
+
+		bool create_MINMAXREGRET_problem(string model_name, string out_file, string sol_file, const vector<Modelize> &m_);
+
+		
 		bool solve(string sol_file);
 
 		bool checkSolution(string sol_);
@@ -59,6 +71,9 @@ class Modelize{
 		//GET FUNCTIONS
 		const vector<int> & getZ()const{
 			return solution_x;
+		}
+		double getObjValue()const{
+			return objValue;
 		}
 };
 

@@ -71,11 +71,12 @@ int main(int argc, char **argv){
 
 //vector of scenaries
 	vector<Modelize> m_;
+	char t[100];
 //SOLVING FOR A INDIVIDUAL SCENARY
 	for(int scen=0; scen<c.getNbScenarios();scen++){
 		if(VERBOSE)
 			cout << "Modeling to the scenary [ "<< scen << "]" << endl;
-		char t[100];
+
 		
 
 
@@ -90,8 +91,8 @@ int main(int argc, char **argv){
 		string sol_file= t;
 		if(!m.create_individual_problem(name, model_file,sol_file)){
 
- 			cout << "Fatal error ... Sorry "<< endl; 
- 			exit(1);
+ 			cout << "Fatal error at create_individual_problem()... Sorry "<< endl; 
+ 			
 		}
 
 		 //solving
@@ -104,7 +105,6 @@ int main(int argc, char **argv){
 //CHECKING SOLUTION IN OTHER SCENARIES
 	for(int scen=0; scen<c.getNbScenarios();scen++){
 
-		char t[100];
 
 		for(int scen_t=0; scen_t<c.getNbScenarios();scen_t++){
 			if(VERBOSE)
@@ -122,8 +122,8 @@ int main(int argc, char **argv){
 			Modelize m(&c,scen_t);
 			if(!m.create_individual_problem(name, model_file,sol_file, m_[scen].getZ())){
 
-	 			cout << "Fatal error ... Sorry "<< endl; 
-	 			exit(1);
+	 			cout << "Fatal error at create_individual_problem() ... Sorry "<< endl; 
+	 		
 			}
 
 
@@ -135,6 +135,38 @@ int main(int argc, char **argv){
 
 	}
 	
+//QUESTION B
+	//Solving with MAXMINABSOLUT
+	{
+		sprintf(t, "MAX MIN ABSOLUT");
+		string name=t;
+		sprintf(t, "outputs/model_MAXMINABSOLUT.lp");
+		string model_file=t;
+		sprintf(t, "outputs/solution_MAXMINABSOLUT.txt");
+		string sol_file= t;
+
+		Modelize m(&c);
+		if(!m.create_MAXMINABSOLUT_problem(name, model_file,sol_file)){
+				cout << "Fatal error at the create_MAXMINABSOLUT_problem() ... Sorry "<< endl; 
+				
+		}
+	}
+		//Solving with MINMAXREGRET
+	
+	{
+		sprintf(t, "MIN MAX REGRET");
+		string name=t;
+		sprintf(t, "outputs/model_MINMAXREGRET.lp");
+		string model_file=t;
+		sprintf(t, "outputs/solution_MINMAXREGRET.txt");
+		string sol_file= t;
+
+		Modelize m(&c);
+		if(!m.create_MINMAXREGRET_problem(name, model_file,sol_file,m_)){
+				cout << "Fatal error at the create_MINMAXREGRET_problem() ... Sorry "<< endl; 
+				
+		}
+	}
 
 	clock_gettime(CLOCK_MONOTONIC, &finish);
     double timeTot =time_interval(start, finish);
