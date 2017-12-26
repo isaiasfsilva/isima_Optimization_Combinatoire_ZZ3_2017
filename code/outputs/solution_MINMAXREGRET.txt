@@ -4,7 +4,7 @@
    problemName="IloCplex"
    solutionName="incumbent"
    solutionIndex="-1"
-   objectiveValue="-54591000"
+   objectiveValue="-220999.999999948"
    solutionTypeValue="3"
    solutionTypeString="primal"
    solutionStatusValue="101"
@@ -20,8 +20,8 @@
    epRHS="1e-06"
    maxIntInfeas="0"
    maxPrimalInfeas="0"
-   maxX="54591000"
-   maxSlack="7350000"/>
+   maxX="220999.999999948"
+   maxSlack="413000.000000052"/>
  <linearConstraints>
   <constraint index="0" slack="0"/>
   <constraint index="1" slack="0"/>
@@ -133,7 +133,7 @@
   <constraint index="107" slack="-25000"/>
   <constraint index="108" slack="-25000"/>
   <constraint index="109" slack="0"/>
-  <constraint index="110" slack="-2750000"/>
+  <constraint index="110" slack="-38000.0000000522"/>
   <constraint index="111" slack="-16000"/>
   <constraint index="112" slack="-12000"/>
   <constraint index="113" slack="0"/>
@@ -158,7 +158,7 @@
   <constraint index="132" slack="0"/>
   <constraint index="133" slack="0"/>
   <constraint index="134" slack="0"/>
-  <constraint index="135" slack="-7350000"/>
+  <constraint index="135" slack="-413000.000000052"/>
  </linearConstraints>
  <variables>
   <variable name="L[periode=1]" index="0" value="0"/>
@@ -289,7 +289,7 @@
   <variable name="Y[product=1 ; periode=10]" index="125" value="0"/>
   <variable name="Y[product=1 ; periode=11]" index="126" value="0"/>
   <variable name="Y[product=1 ; periode=12]" index="127" value="0"/>
-  <variable name="x129" index="128" value="-54591000"/>
+  <variable name="x129" index="128" value="-220999.999999948"/>
   <variable name="x131" index="129" value="0"/>
  </variables>
 </CPLEXSolution>

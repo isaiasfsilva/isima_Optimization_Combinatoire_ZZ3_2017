@@ -61,9 +61,11 @@ class Modelize{
 		bool create_MAXMINABSOLUT_problem(string model_name, string out_file, string sol_file);
 
 
-		bool create_MINMAXREGRET_problem(string model_name, string out_file, string sol_file, const vector<Modelize> &m_);
+		bool create_MINMAXREGRET_problem(string model_name, string out_file, string sol_file, const vector<Modelize>& m_);
 
-		
+		bool create_AVERAGE_problem(string model_name, string out_file, string sol_file);
+
+
 		bool solve(string sol_file);
 
 		bool checkSolution(string sol_);

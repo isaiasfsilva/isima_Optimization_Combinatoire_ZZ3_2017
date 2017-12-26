@@ -941,7 +941,7 @@ Subject To
        - 11 Y(producte1_;_periodee7)#122 - 11 Y(producte1_;_periodee8)#123
        - 11 Y(producte1_;_periodee9)#124 - 11 Y(producte1_;_periodee10)#125
        - 11 Y(producte1_;_periodee11)#126 - 11 Y(producte1_;_periodee12)#127
-       + x129#128 >= -68100000
+       + x129#128 >= -13729999.9999999
  c87:  X(producte0_;_periodee1)#1 + Y(producte0_;_periodee0)#102
        - Y(producte0_;_periodee1)#103 >= 60000
  c88:  X(producte0_;_periodee2)#34 + Y(producte0_;_periodee1)#103
@@ -1059,7 +1059,7 @@ Subject To
        - 11 Y(producte1_;_periodee7)#122 - 11 Y(producte1_;_periodee8)#123
        - 11 Y(producte1_;_periodee9)#124 - 11 Y(producte1_;_periodee10)#125
        - 11 Y(producte1_;_periodee11)#126 - 11 Y(producte1_;_periodee12)#127
-       + x129#128 >= -70850000
+       + x129#128 >= -13768000
  c112: X(producte0_;_periodee1)#1 + Y(producte0_;_periodee0)#102
        - Y(producte0_;_periodee1)#103 >= 60000
  c113: X(producte0_;_periodee2)#34 + Y(producte0_;_periodee1)#103
@@ -1177,7 +1177,7 @@ Subject To
        - 11 Y(producte1_;_periodee7)#122 - 11 Y(producte1_;_periodee8)#123
        - 11 Y(producte1_;_periodee9)#124 - 11 Y(producte1_;_periodee10)#125
        - 11 Y(producte1_;_periodee11)#126 - 11 Y(producte1_;_periodee12)#127
-       + x129#128 >= -75450000
+       + x129#128 >= -14143000
 Bounds
       L(periodee1)#0 >= 0
       X(producte0_;_periodee1)#1 >= 0

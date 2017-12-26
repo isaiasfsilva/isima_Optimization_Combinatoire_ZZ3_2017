@@ -98,6 +98,7 @@ int main(int argc, char **argv){
 		 //solving
 		
 		//m.solve(sol_file);
+
 		m_.push_back(m);
 
 	}
@@ -151,8 +152,9 @@ int main(int argc, char **argv){
 				
 		}
 	}
+		
+
 		//Solving with MINMAXREGRET
-	
 	{
 		sprintf(t, "MIN MAX REGRET");
 		string name=t;
@@ -167,6 +169,24 @@ int main(int argc, char **argv){
 				
 		}
 	}
+
+
+		//Solving with AVERAGE
+	{
+		sprintf(t, "AVERAGE criteria");
+		string name=t;
+		sprintf(t, "outputs/model_AVERAGE.lp");
+		string model_file=t;
+		sprintf(t, "outputs/solution_AVERAGE.txt");
+		string sol_file= t;
+
+		Modelize m(&c);
+		if(!m.create_AVERAGE_problem(name, model_file,sol_file)){
+				cout << "Fatal error at the create_AVERAGE_problem() ... Sorry "<< endl; 
+				
+		}
+	}
+
 
 	clock_gettime(CLOCK_MONOTONIC, &finish);
     double timeTot =time_interval(start, finish);
