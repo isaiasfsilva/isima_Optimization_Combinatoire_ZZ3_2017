@@ -26,21 +26,41 @@ Last update: 16 december 2017
 using namespace std;
 
 
-//We need an 3D matrix for Y variable of our problem! This is the define!
-typedef IloArray<IloNumVarArray> NumVarMatrix;
-typedef IloArray<NumVarMatrix>   NumVar3Matrix;
 
-typedef IloArray<IloNumArray> NumMatrix;
 
 bool Modelize::solve(string sol_file){
-	cplex->solve();
+	if(!cplex->solve()){
+		cout << "Solution infeasible" << endl;
+		return false;
+	}
+	
+
 	cplex->writeSolution(sol_file.c_str());
 
 //RESULTS
 	cout << " Objectif Function = " << cplex->getObjValue() << endl;
 }
 
-bool Modelize::create_problem(string model_name, string out_file){
+bool Modelize::checkSolution(string sol_){
+	if(VERBOSE)
+		cout<<"Checking the solution ('"<<sol_<<"') at the scenary " << scen << endl;
+
+	cplex->readSolution(sol_.c_str());
+	if(!cplex->solve()){
+		cout << "Solution infeasible" << endl;
+		return false;
+
+	}
+	
+	cout << " Objectif Function = " << cplex->getObjValue() << endl;
+
+
+}
+bool Modelize::create_individual_problem(string model_name, string out_file, string sol_file){
+	vector<int> t;
+	return create_individual_problem(model_name,out_file,sol_file,t);
+}
+bool Modelize::create_individual_problem(string model_name, string out_file,string sol_file, const vector<int>& sol_){
 
 	if(VERBOSE)
 		cout << "\tModelizing the scenario " << scen << " ["<<model_name << "]" << endl;
@@ -62,6 +82,7 @@ bool Modelize::create_problem(string model_name, string out_file){
 	//CREATING VARIABLES
 
 		NumVarMatrix x(*env,core_->getNbProducts());
+		
 		for(int i=0;i<core_->getNbProducts(); i++){
 			x[i] = IloNumVarArray(*env, core_->getNbPeriodes()+1,0,IloInfinity,ILOINT);
 			for(int t=0;t<=core_->getNbPeriodes(); t++){
@@ -190,7 +211,18 @@ bool Modelize::create_problem(string model_name, string out_file){
 			model->add(s_c9a == s_c9b);
 		}
 
+//VERIFYING IF WE HAVE A X BASE SOLUTION ALREADY
+		if(sol_.size()==core_->getNbInvestissements()*core_->getNbMachines()){
+			if(VERBOSE)	
+				cout <<"Solving model with fixed Z solution ... "<< endl;
 
+
+			for(int i=0;i<core_->getNbInvestissements(); i++){
+				for(int t=0;t<core_->getNbMachines(); t++){
+					model->add(z[i][t]==sol_[i*core_->getNbMachines() + t]);
+				}
+			}
+		}
 
 	//--------------------OBJECTIF FUNCTION -------------------
 		//vent price
@@ -259,7 +291,27 @@ bool Modelize::create_problem(string model_name, string out_file){
 
 	//EXPORTING MODEL TO FILE
 		cplex->exportModel(out_file.c_str());
-		    
+		solve(sol_file); 
+
+	//Saving Solution for the X variables
+
+
+
+
+	//saving the X variables to put in another scenary
+		if(sol_.size()==0){
+			if(VERBOSE)
+				cout << "Saving Z variables ... " << endl;
+			for(int i=0;i<core_->getNbInvestissements(); i++){
+				for(int t=0;t<core_->getNbMachines(); t++){
+					//get convergence variables
+					solution_x.push_back((cplex->getValue(z[i][t])>0.9)?1:0);
+				}
+			}
+		}	
+
+
+
 
 
 		if(VERBOSE)

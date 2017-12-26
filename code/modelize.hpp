@@ -28,23 +28,38 @@ class core;
 //DEFINITIONS 
 using namespace std;
 
+//We need an 3D matrix for Y variable of our problem! This is the define!
+typedef IloArray<IloNumVarArray> NumVarMatrix;
+typedef IloArray<NumVarMatrix>   NumVar3Matrix;
+
+typedef IloArray<IloNumArray> NumMatrix;
+
 
 class Modelize{
 	private:
 		int scen;
+		core *core_;
 	//variables
+		vector<int> solution_x;
 	public:
 		IloCplex *cplex;
 		IloEnv *env; 
 		IloModel *model;
-		core *core_;
+
 
 	public:	
 		Modelize(core *core, int scen_=0):scen(scen_),core_(core){};	
 
-		bool create_problem(string model_name, string out_file);
+		bool create_individual_problem(string model_name, string out_file, string sol_file);
+		bool create_individual_problem(string model_name, string out_file, string sol_file,const  vector<int>& sol_);
 		bool solve(string sol_file);
+
+		bool checkSolution(string sol_);
 		
+		//GET FUNCTIONS
+		const vector<int> & getZ()const{
+			return solution_x;
+		}
 };
 
 

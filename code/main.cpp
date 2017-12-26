@@ -69,7 +69,9 @@ int main(int argc, char **argv){
 	}
 	
 
-	//pour un scenario
+//vector of scenaries
+	vector<Modelize> m_;
+//SOLVING FOR A INDIVIDUAL SCENARY
 	for(int scen=0; scen<c.getNbScenarios();scen++){
 		if(VERBOSE)
 			cout << "Modeling to the scenary [ "<< scen << "]" << endl;
@@ -84,22 +86,55 @@ int main(int argc, char **argv){
 		string name=t;
 		sprintf(t, "outputs/model_SCENARIO[%d].lp", scen);
 		string model_file=t;
-		if(!m.create_problem(name, model_file)){
+		sprintf(t, "outputs/solution_SCENARIO[%d].txt", scen);
+		string sol_file= t;
+		if(!m.create_individual_problem(name, model_file,sol_file)){
 
  			cout << "Fatal error ... Sorry "<< endl; 
  			exit(1);
 		}
 
 		 //solving
-		sprintf(t, "outputs/solution_SCENARIO[%d].txt", scen);
-		string sol_file= t;
-		 m.solve(sol_file);
-
-		 
-
+		
+		//m.solve(sol_file);
+		m_.push_back(m);
 
 	}
 
+//CHECKING SOLUTION IN OTHER SCENARIES
+	for(int scen=0; scen<c.getNbScenarios();scen++){
+
+		char t[100];
+
+		for(int scen_t=0; scen_t<c.getNbScenarios();scen_t++){
+			if(VERBOSE)
+				cout << "Checking the investissements Z of the scenary "<< scen <<" AT the scenary [ "<< scen_t << "]" << endl;
+			
+			
+
+			sprintf(t, "Individual SCENARIO[%d with investissements Z of the scenary %d]", scen_t,scen);
+			string name=t;
+			sprintf(t, "outputs/model_SCENARIO[%d with investissements Z of the scenary %d].lp", scen_t,scen);
+			string model_file=t;
+			sprintf(t, "outputs/solution_SCENARIO[%d with investissements Z of the scenary %d].txt", scen_t,scen);
+			string sol_file= t;
+
+			Modelize m(&c,scen_t);
+			if(!m.create_individual_problem(name, model_file,sol_file, m_[scen].getZ())){
+
+	 			cout << "Fatal error ... Sorry "<< endl; 
+	 			exit(1);
+			}
+
+
+
+
+
+		}
+		
+
+	}
+	
 
 	clock_gettime(CLOCK_MONOTONIC, &finish);
     double timeTot =time_interval(start, finish);
