@@ -57,8 +57,14 @@ class Modelize{
 //   THIS PART IS IMPORTANT. I'VE CHANGED THE METHOD 
 //  BECAUSE WE'RE WORKING WITH DIFFERENT SCENARIES... 
 //   MIN MAX in THIS CASE is equivalent to MAX MIN 
+
+//  Here the variables Z, X and initial stock (y0)
+//  is commom between chaque scenary. The stock in each
+//  time is individual :)
 // ====================================================	
 		bool create_MAXMINABSOLUT_problem(string model_name, string out_file, string sol_file);
+
+
 
 
 		bool create_MINMAXREGRET_problem(string model_name, string out_file, string sol_file, const vector<Modelize>& m_);

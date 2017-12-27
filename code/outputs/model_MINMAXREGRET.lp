@@ -2,7 +2,7 @@
 \Problem name: IloCplex
 
 Minimize
- obj: x129#128 + x131#129
+ obj: x129#128 + x179#177
 Subject To
  c1:   L(periodee1)#0 + X(producte0_;_periodee1)#1 + X(producte1_;_periodee1)#2
        - 10000 Z(investimente0_;_machinee0)#3
@@ -824,54 +824,54 @@ Subject To
  c61:  X(producte0_;_periodee12)#64 + X(producte1_;_periodee12)#65
        - R(investimente0_;_periodee12)#99 - R(investimente1_;_periodee12)#100
        - R(investimente2_;_periodee12)#101  = 0
- c62:  X(producte0_;_periodee1)#1 + Y(producte0_;_periodee0)#102
-       - Y(producte0_;_periodee1)#103 >= 50000
- c63:  X(producte0_;_periodee2)#34 + Y(producte0_;_periodee1)#103
-       - Y(producte0_;_periodee2)#104 >= 60000
- c64:  X(producte0_;_periodee3)#37 + Y(producte0_;_periodee2)#104
-       - Y(producte0_;_periodee3)#105 >= 60000
- c65:  X(producte0_;_periodee4)#40 + Y(producte0_;_periodee3)#105
-       - Y(producte0_;_periodee4)#106 >= 40000
- c66:  X(producte0_;_periodee5)#43 + Y(producte0_;_periodee4)#106
-       - Y(producte0_;_periodee5)#107 >= 40000
- c67:  X(producte0_;_periodee6)#46 + Y(producte0_;_periodee5)#107
-       - Y(producte0_;_periodee6)#108 >= 50000
- c68:  X(producte0_;_periodee7)#49 + Y(producte0_;_periodee6)#108
-       - Y(producte0_;_periodee7)#109 >= 60000
- c69:  X(producte0_;_periodee8)#52 + Y(producte0_;_periodee7)#109
-       - Y(producte0_;_periodee8)#110 >= 50000
- c70:  X(producte0_;_periodee9)#55 + Y(producte0_;_periodee8)#110
-       - Y(producte0_;_periodee9)#111 >= 50000
- c71:  X(producte0_;_periodee10)#58 + Y(producte0_;_periodee9)#111
-       - Y(producte0_;_periodee10)#112 >= 60000
- c72:  X(producte0_;_periodee11)#61 + Y(producte0_;_periodee10)#112
-       - Y(producte0_;_periodee11)#113 >= 60000
- c73:  X(producte0_;_periodee12)#64 + Y(producte0_;_periodee11)#113
-       - Y(producte0_;_periodee12)#114 >= 50000
- c74:  X(producte1_;_periodee1)#2 + Y(producte1_;_periodee0)#115
-       - Y(producte1_;_periodee1)#116 >= 50000
- c75:  X(producte1_;_periodee2)#35 + Y(producte1_;_periodee1)#116
-       - Y(producte1_;_periodee2)#117 >= 50000
- c76:  X(producte1_;_periodee3)#38 + Y(producte1_;_periodee2)#117
-       - Y(producte1_;_periodee3)#118 >= 70000
- c77:  X(producte1_;_periodee4)#41 + Y(producte1_;_periodee3)#118
-       - Y(producte1_;_periodee4)#119 >= 50000
- c78:  X(producte1_;_periodee5)#44 + Y(producte1_;_periodee4)#119
-       - Y(producte1_;_periodee5)#120 >= 40000
- c79:  X(producte1_;_periodee6)#47 + Y(producte1_;_periodee5)#120
-       - Y(producte1_;_periodee6)#121 >= 50000
- c80:  X(producte1_;_periodee7)#50 + Y(producte1_;_periodee6)#121
-       - Y(producte1_;_periodee7)#122 >= 50000
- c81:  X(producte1_;_periodee8)#53 + Y(producte1_;_periodee7)#122
-       - Y(producte1_;_periodee8)#123 >= 60000
- c82:  X(producte1_;_periodee9)#56 + Y(producte1_;_periodee8)#123
-       - Y(producte1_;_periodee9)#124 >= 50000
- c83:  X(producte1_;_periodee10)#59 + Y(producte1_;_periodee9)#124
-       - Y(producte1_;_periodee10)#125 >= 35000
- c84:  X(producte1_;_periodee11)#62 + Y(producte1_;_periodee10)#125
-       - Y(producte1_;_periodee11)#126 >= 45000
- c85:  X(producte1_;_periodee12)#65 + Y(producte1_;_periodee11)#126
-       - Y(producte1_;_periodee12)#127 >= 60000
+ c62:  X(producte0_;_periodee1)#1 + Y(producte0_;_periodee0;_scenarye0)#102
+       - Y(producte0_;_periodee1;_scenarye0)#103  = 50000
+ c63:  X(producte0_;_periodee2)#34 + Y(producte0_;_periodee1;_scenarye0)#103
+       - Y(producte0_;_periodee2;_scenarye0)#104  = 60000
+ c64:  X(producte0_;_periodee3)#37 + Y(producte0_;_periodee2;_scenarye0)#104
+       - Y(producte0_;_periodee3;_scenarye0)#105  = 60000
+ c65:  X(producte0_;_periodee4)#40 + Y(producte0_;_periodee3;_scenarye0)#105
+       - Y(producte0_;_periodee4;_scenarye0)#106  = 40000
+ c66:  X(producte0_;_periodee5)#43 + Y(producte0_;_periodee4;_scenarye0)#106
+       - Y(producte0_;_periodee5;_scenarye0)#107  = 40000
+ c67:  X(producte0_;_periodee6)#46 + Y(producte0_;_periodee5;_scenarye0)#107
+       - Y(producte0_;_periodee6;_scenarye0)#108  = 50000
+ c68:  X(producte0_;_periodee7)#49 + Y(producte0_;_periodee6;_scenarye0)#108
+       - Y(producte0_;_periodee7;_scenarye0)#109  = 60000
+ c69:  X(producte0_;_periodee8)#52 + Y(producte0_;_periodee7;_scenarye0)#109
+       - Y(producte0_;_periodee8;_scenarye0)#110  = 50000
+ c70:  X(producte0_;_periodee9)#55 + Y(producte0_;_periodee8;_scenarye0)#110
+       - Y(producte0_;_periodee9;_scenarye0)#111  = 50000
+ c71:  X(producte0_;_periodee10)#58 + Y(producte0_;_periodee9;_scenarye0)#111
+       - Y(producte0_;_periodee10;_scenarye0)#112  = 60000
+ c72:  X(producte0_;_periodee11)#61 + Y(producte0_;_periodee10;_scenarye0)#112
+       - Y(producte0_;_periodee11;_scenarye0)#113  = 60000
+ c73:  X(producte0_;_periodee12)#64 + Y(producte0_;_periodee11;_scenarye0)#113
+       - Y(producte0_;_periodee12;_scenarye0)#114  = 50000
+ c74:  X(producte1_;_periodee1)#2 + Y(producte1_;_periodee0;_scenarye0)#115
+       - Y(producte1_;_periodee1;_scenarye0)#116  = 50000
+ c75:  X(producte1_;_periodee2)#35 + Y(producte1_;_periodee1;_scenarye0)#116
+       - Y(producte1_;_periodee2;_scenarye0)#117  = 50000
+ c76:  X(producte1_;_periodee3)#38 + Y(producte1_;_periodee2;_scenarye0)#117
+       - Y(producte1_;_periodee3;_scenarye0)#118  = 70000
+ c77:  X(producte1_;_periodee4)#41 + Y(producte1_;_periodee3;_scenarye0)#118
+       - Y(producte1_;_periodee4;_scenarye0)#119  = 50000
+ c78:  X(producte1_;_periodee5)#44 + Y(producte1_;_periodee4;_scenarye0)#119
+       - Y(producte1_;_periodee5;_scenarye0)#120  = 40000
+ c79:  X(producte1_;_periodee6)#47 + Y(producte1_;_periodee5;_scenarye0)#120
+       - Y(producte1_;_periodee6;_scenarye0)#121  = 50000
+ c80:  X(producte1_;_periodee7)#50 + Y(producte1_;_periodee6;_scenarye0)#121
+       - Y(producte1_;_periodee7;_scenarye0)#122  = 50000
+ c81:  X(producte1_;_periodee8)#53 + Y(producte1_;_periodee7;_scenarye0)#122
+       - Y(producte1_;_periodee8;_scenarye0)#123  = 60000
+ c82:  X(producte1_;_periodee9)#56 + Y(producte1_;_periodee8;_scenarye0)#123
+       - Y(producte1_;_periodee9;_scenarye0)#124  = 50000
+ c83:  X(producte1_;_periodee10)#59 + Y(producte1_;_periodee9;_scenarye0)#124
+       - Y(producte1_;_periodee10;_scenarye0)#125  = 35000
+ c84:  X(producte1_;_periodee11)#62 + Y(producte1_;_periodee10;_scenarye0)#125
+       - Y(producte1_;_periodee11;_scenarye0)#126  = 45000
+ c85:  X(producte1_;_periodee12)#65 + Y(producte1_;_periodee11;_scenarye0)#126
+       - Y(producte1_;_periodee12;_scenarye0)#127  = 60000
  c86:  - 15 L(periodee1)#0 - 100000 Z(investimente0_;_machinee0)#3
        - 100000 Z(investimente0_;_machinee1)#4
        - 100000 Z(investimente0_;_machinee2)#5
@@ -928,68 +928,81 @@ Subject To
        - 10 R(investimente0_;_periodee12)#99
        - 9 R(investimente1_;_periodee12)#100
        - 8 R(investimente2_;_periodee12)#101
-       - 1000 Y(producte0_;_periodee0)#102 - 11 Y(producte0_;_periodee1)#103
-       - 11 Y(producte0_;_periodee2)#104 - 11 Y(producte0_;_periodee3)#105
-       - 11 Y(producte0_;_periodee4)#106 - 11 Y(producte0_;_periodee5)#107
-       - 11 Y(producte0_;_periodee6)#108 - 11 Y(producte0_;_periodee7)#109
-       - 11 Y(producte0_;_periodee8)#110 - 11 Y(producte0_;_periodee9)#111
-       - 11 Y(producte0_;_periodee10)#112 - 11 Y(producte0_;_periodee11)#113
-       - 11 Y(producte0_;_periodee12)#114 - 1000 Y(producte1_;_periodee0)#115
-       - 11 Y(producte1_;_periodee1)#116 - 11 Y(producte1_;_periodee2)#117
-       - 11 Y(producte1_;_periodee3)#118 - 11 Y(producte1_;_periodee4)#119
-       - 11 Y(producte1_;_periodee5)#120 - 11 Y(producte1_;_periodee6)#121
-       - 11 Y(producte1_;_periodee7)#122 - 11 Y(producte1_;_periodee8)#123
-       - 11 Y(producte1_;_periodee9)#124 - 11 Y(producte1_;_periodee10)#125
-       - 11 Y(producte1_;_periodee11)#126 - 11 Y(producte1_;_periodee12)#127
-       + x129#128 >= -13729999.9999999
- c87:  X(producte0_;_periodee1)#1 + Y(producte0_;_periodee0)#102
-       - Y(producte0_;_periodee1)#103 >= 60000
- c88:  X(producte0_;_periodee2)#34 + Y(producte0_;_periodee1)#103
-       - Y(producte0_;_periodee2)#104 >= 60000
- c89:  X(producte0_;_periodee3)#37 + Y(producte0_;_periodee2)#104
-       - Y(producte0_;_periodee3)#105 >= 60000
- c90:  X(producte0_;_periodee4)#40 + Y(producte0_;_periodee3)#105
-       - Y(producte0_;_periodee4)#106 >= 50000
- c91:  X(producte0_;_periodee5)#43 + Y(producte0_;_periodee4)#106
-       - Y(producte0_;_periodee5)#107 >= 65000
- c92:  X(producte0_;_periodee6)#46 + Y(producte0_;_periodee5)#107
-       - Y(producte0_;_periodee6)#108 >= 45000
- c93:  X(producte0_;_periodee7)#49 + Y(producte0_;_periodee6)#108
-       - Y(producte0_;_periodee7)#109 >= 60000
- c94:  X(producte0_;_periodee8)#52 + Y(producte0_;_periodee7)#109
-       - Y(producte0_;_periodee8)#110 >= 60000
- c95:  X(producte0_;_periodee9)#55 + Y(producte0_;_periodee8)#110
-       - Y(producte0_;_periodee9)#111 >= 55000
- c96:  X(producte0_;_periodee10)#58 + Y(producte0_;_periodee9)#111
-       - Y(producte0_;_periodee10)#112 >= 60000
- c97:  X(producte0_;_periodee11)#61 + Y(producte0_;_periodee10)#112
-       - Y(producte0_;_periodee11)#113 >= 60000
- c98:  X(producte0_;_periodee12)#64 + Y(producte0_;_periodee11)#113
-       - Y(producte0_;_periodee12)#114 >= 50000
- c99:  X(producte1_;_periodee1)#2 + Y(producte1_;_periodee0)#115
-       - Y(producte1_;_periodee1)#116 >= 50000
- c100: X(producte1_;_periodee2)#35 + Y(producte1_;_periodee1)#116
-       - Y(producte1_;_periodee2)#117 >= 50000
- c101: X(producte1_;_periodee3)#38 + Y(producte1_;_periodee2)#117
-       - Y(producte1_;_periodee3)#118 >= 70000
- c102: X(producte1_;_periodee4)#41 + Y(producte1_;_periodee3)#118
-       - Y(producte1_;_periodee4)#119 >= 50000
- c103: X(producte1_;_periodee5)#44 + Y(producte1_;_periodee4)#119
-       - Y(producte1_;_periodee5)#120 >= 40000
- c104: X(producte1_;_periodee6)#47 + Y(producte1_;_periodee5)#120
-       - Y(producte1_;_periodee6)#121 >= 50000
- c105: X(producte1_;_periodee7)#50 + Y(producte1_;_periodee6)#121
-       - Y(producte1_;_periodee7)#122 >= 50000
- c106: X(producte1_;_periodee8)#53 + Y(producte1_;_periodee7)#122
-       - Y(producte1_;_periodee8)#123 >= 60000
- c107: X(producte1_;_periodee9)#56 + Y(producte1_;_periodee8)#123
-       - Y(producte1_;_periodee9)#124 >= 50000
- c108: X(producte1_;_periodee10)#59 + Y(producte1_;_periodee9)#124
-       - Y(producte1_;_periodee10)#125 >= 35000
- c109: X(producte1_;_periodee11)#62 + Y(producte1_;_periodee10)#125
-       - Y(producte1_;_periodee11)#126 >= 45000
- c110: X(producte1_;_periodee12)#65 + Y(producte1_;_periodee11)#126
-       - Y(producte1_;_periodee12)#127 >= 60000
+       - 1000 Y(producte0_;_periodee0;_scenarye0)#102
+       - 11 Y(producte0_;_periodee1;_scenarye0)#103
+       - 11 Y(producte0_;_periodee2;_scenarye0)#104
+       - 11 Y(producte0_;_periodee3;_scenarye0)#105
+       - 11 Y(producte0_;_periodee4;_scenarye0)#106
+       - 11 Y(producte0_;_periodee5;_scenarye0)#107
+       - 11 Y(producte0_;_periodee6;_scenarye0)#108
+       - 11 Y(producte0_;_periodee7;_scenarye0)#109
+       - 11 Y(producte0_;_periodee8;_scenarye0)#110
+       - 11 Y(producte0_;_periodee9;_scenarye0)#111
+       - 11 Y(producte0_;_periodee10;_scenarye0)#112
+       - 11 Y(producte0_;_periodee11;_scenarye0)#113
+       - 11 Y(producte0_;_periodee12;_scenarye0)#114
+       - 1000 Y(producte1_;_periodee0;_scenarye0)#115
+       - 11 Y(producte1_;_periodee1;_scenarye0)#116
+       - 11 Y(producte1_;_periodee2;_scenarye0)#117
+       - 11 Y(producte1_;_periodee3;_scenarye0)#118
+       - 11 Y(producte1_;_periodee4;_scenarye0)#119
+       - 11 Y(producte1_;_periodee5;_scenarye0)#120
+       - 11 Y(producte1_;_periodee6;_scenarye0)#121
+       - 11 Y(producte1_;_periodee7;_scenarye0)#122
+       - 11 Y(producte1_;_periodee8;_scenarye0)#123
+       - 11 Y(producte1_;_periodee9;_scenarye0)#124
+       - 11 Y(producte1_;_periodee10;_scenarye0)#125
+       - 11 Y(producte1_;_periodee11;_scenarye0)#126
+       - 11 Y(producte1_;_periodee12;_scenarye0)#127 + x129#128
+       >= -13729999.9999999
+ c87:  X(producte0_;_periodee1)#1 + Y(producte0_;_periodee0;_scenarye0)#102
+       - Y(producte0_;_periodee1;_scenarye1)#129  = 60000
+ c88:  X(producte0_;_periodee2)#34 + Y(producte0_;_periodee1;_scenarye1)#129
+       - Y(producte0_;_periodee2;_scenarye1)#130  = 60000
+ c89:  X(producte0_;_periodee3)#37 + Y(producte0_;_periodee2;_scenarye1)#130
+       - Y(producte0_;_periodee3;_scenarye1)#131  = 60000
+ c90:  X(producte0_;_periodee4)#40 + Y(producte0_;_periodee3;_scenarye1)#131
+       - Y(producte0_;_periodee4;_scenarye1)#132  = 50000
+ c91:  X(producte0_;_periodee5)#43 + Y(producte0_;_periodee4;_scenarye1)#132
+       - Y(producte0_;_periodee5;_scenarye1)#133  = 65000
+ c92:  X(producte0_;_periodee6)#46 + Y(producte0_;_periodee5;_scenarye1)#133
+       - Y(producte0_;_periodee6;_scenarye1)#134  = 45000
+ c93:  X(producte0_;_periodee7)#49 + Y(producte0_;_periodee6;_scenarye1)#134
+       - Y(producte0_;_periodee7;_scenarye1)#135  = 60000
+ c94:  X(producte0_;_periodee8)#52 + Y(producte0_;_periodee7;_scenarye1)#135
+       - Y(producte0_;_periodee8;_scenarye1)#136  = 60000
+ c95:  X(producte0_;_periodee9)#55 + Y(producte0_;_periodee8;_scenarye1)#136
+       - Y(producte0_;_periodee9;_scenarye1)#137  = 55000
+ c96:  X(producte0_;_periodee10)#58 + Y(producte0_;_periodee9;_scenarye1)#137
+       - Y(producte0_;_periodee10;_scenarye1)#138  = 60000
+ c97:  X(producte0_;_periodee11)#61 + Y(producte0_;_periodee10;_scenarye1)#138
+       - Y(producte0_;_periodee11;_scenarye1)#139  = 60000
+ c98:  X(producte0_;_periodee12)#64 + Y(producte0_;_periodee11;_scenarye1)#139
+       - Y(producte0_;_periodee12;_scenarye1)#140  = 50000
+ c99:  X(producte1_;_periodee1)#2 + Y(producte1_;_periodee0;_scenarye0)#115
+       - Y(producte1_;_periodee1;_scenarye1)#141  = 50000
+ c100: X(producte1_;_periodee2)#35 + Y(producte1_;_periodee1;_scenarye1)#141
+       - Y(producte1_;_periodee2;_scenarye1)#142  = 50000
+ c101: X(producte1_;_periodee3)#38 + Y(producte1_;_periodee2;_scenarye1)#142
+       - Y(producte1_;_periodee3;_scenarye1)#143  = 70000
+ c102: X(producte1_;_periodee4)#41 + Y(producte1_;_periodee3;_scenarye1)#143
+       - Y(producte1_;_periodee4;_scenarye1)#144  = 50000
+ c103: X(producte1_;_periodee5)#44 + Y(producte1_;_periodee4;_scenarye1)#144
+       - Y(producte1_;_periodee5;_scenarye1)#145  = 40000
+ c104: X(producte1_;_periodee6)#47 + Y(producte1_;_periodee5;_scenarye1)#145
+       - Y(producte1_;_periodee6;_scenarye1)#146  = 50000
+ c105: X(producte1_;_periodee7)#50 + Y(producte1_;_periodee6;_scenarye1)#146
+       - Y(producte1_;_periodee7;_scenarye1)#147  = 50000
+ c106: X(producte1_;_periodee8)#53 + Y(producte1_;_periodee7;_scenarye1)#147
+       - Y(producte1_;_periodee8;_scenarye1)#148  = 60000
+ c107: X(producte1_;_periodee9)#56 + Y(producte1_;_periodee8;_scenarye1)#148
+       - Y(producte1_;_periodee9;_scenarye1)#149  = 50000
+ c108: X(producte1_;_periodee10)#59 + Y(producte1_;_periodee9;_scenarye1)#149
+       - Y(producte1_;_periodee10;_scenarye1)#150  = 35000
+ c109: X(producte1_;_periodee11)#62 + Y(producte1_;_periodee10;_scenarye1)#150
+       - Y(producte1_;_periodee11;_scenarye1)#151  = 45000
+ c110: X(producte1_;_periodee12)#65 + Y(producte1_;_periodee11;_scenarye1)#151
+       - Y(producte1_;_periodee12;_scenarye1)#152  = 60000
  c111: - 15 L(periodee1)#0 - 100000 Z(investimente0_;_machinee0)#3
        - 100000 Z(investimente0_;_machinee1)#4
        - 100000 Z(investimente0_;_machinee2)#5
@@ -1046,68 +1059,80 @@ Subject To
        - 10 R(investimente0_;_periodee12)#99
        - 9 R(investimente1_;_periodee12)#100
        - 8 R(investimente2_;_periodee12)#101
-       - 1000 Y(producte0_;_periodee0)#102 - 11 Y(producte0_;_periodee1)#103
-       - 11 Y(producte0_;_periodee2)#104 - 11 Y(producte0_;_periodee3)#105
-       - 11 Y(producte0_;_periodee4)#106 - 11 Y(producte0_;_periodee5)#107
-       - 11 Y(producte0_;_periodee6)#108 - 11 Y(producte0_;_periodee7)#109
-       - 11 Y(producte0_;_periodee8)#110 - 11 Y(producte0_;_periodee9)#111
-       - 11 Y(producte0_;_periodee10)#112 - 11 Y(producte0_;_periodee11)#113
-       - 11 Y(producte0_;_periodee12)#114 - 1000 Y(producte1_;_periodee0)#115
-       - 11 Y(producte1_;_periodee1)#116 - 11 Y(producte1_;_periodee2)#117
-       - 11 Y(producte1_;_periodee3)#118 - 11 Y(producte1_;_periodee4)#119
-       - 11 Y(producte1_;_periodee5)#120 - 11 Y(producte1_;_periodee6)#121
-       - 11 Y(producte1_;_periodee7)#122 - 11 Y(producte1_;_periodee8)#123
-       - 11 Y(producte1_;_periodee9)#124 - 11 Y(producte1_;_periodee10)#125
-       - 11 Y(producte1_;_periodee11)#126 - 11 Y(producte1_;_periodee12)#127
-       + x129#128 >= -13768000
- c112: X(producte0_;_periodee1)#1 + Y(producte0_;_periodee0)#102
-       - Y(producte0_;_periodee1)#103 >= 60000
- c113: X(producte0_;_periodee2)#34 + Y(producte0_;_periodee1)#103
-       - Y(producte0_;_periodee2)#104 >= 60000
- c114: X(producte0_;_periodee3)#37 + Y(producte0_;_periodee2)#104
-       - Y(producte0_;_periodee3)#105 >= 60000
- c115: X(producte0_;_periodee4)#40 + Y(producte0_;_periodee3)#105
-       - Y(producte0_;_periodee4)#106 >= 50000
- c116: X(producte0_;_periodee5)#43 + Y(producte0_;_periodee4)#106
-       - Y(producte0_;_periodee5)#107 >= 65000
- c117: X(producte0_;_periodee6)#46 + Y(producte0_;_periodee5)#107
-       - Y(producte0_;_periodee6)#108 >= 45000
- c118: X(producte0_;_periodee7)#49 + Y(producte0_;_periodee6)#108
-       - Y(producte0_;_periodee7)#109 >= 60000
- c119: X(producte0_;_periodee8)#52 + Y(producte0_;_periodee7)#109
-       - Y(producte0_;_periodee8)#110 >= 60000
- c120: X(producte0_;_periodee9)#55 + Y(producte0_;_periodee8)#110
-       - Y(producte0_;_periodee9)#111 >= 55000
- c121: X(producte0_;_periodee10)#58 + Y(producte0_;_periodee9)#111
-       - Y(producte0_;_periodee10)#112 >= 60000
- c122: X(producte0_;_periodee11)#61 + Y(producte0_;_periodee10)#112
-       - Y(producte0_;_periodee11)#113 >= 60000
- c123: X(producte0_;_periodee12)#64 + Y(producte0_;_periodee11)#113
-       - Y(producte0_;_periodee12)#114 >= 70000
- c124: X(producte1_;_periodee1)#2 + Y(producte1_;_periodee0)#115
-       - Y(producte1_;_periodee1)#116 >= 50000
- c125: X(producte1_;_periodee2)#35 + Y(producte1_;_periodee1)#116
-       - Y(producte1_;_periodee2)#117 >= 50000
- c126: X(producte1_;_periodee3)#38 + Y(producte1_;_periodee2)#117
-       - Y(producte1_;_periodee3)#118 >= 70000
- c127: X(producte1_;_periodee4)#41 + Y(producte1_;_periodee3)#118
-       - Y(producte1_;_periodee4)#119 >= 60000
- c128: X(producte1_;_periodee5)#44 + Y(producte1_;_periodee4)#119
-       - Y(producte1_;_periodee5)#120 >= 40000
- c129: X(producte1_;_periodee6)#47 + Y(producte1_;_periodee5)#120
-       - Y(producte1_;_periodee6)#121 >= 50000
- c130: X(producte1_;_periodee7)#50 + Y(producte1_;_periodee6)#121
-       - Y(producte1_;_periodee7)#122 >= 50000
- c131: X(producte1_;_periodee8)#53 + Y(producte1_;_periodee7)#122
-       - Y(producte1_;_periodee8)#123 >= 60000
- c132: X(producte1_;_periodee9)#56 + Y(producte1_;_periodee8)#123
-       - Y(producte1_;_periodee9)#124 >= 50000
- c133: X(producte1_;_periodee10)#59 + Y(producte1_;_periodee9)#124
-       - Y(producte1_;_periodee10)#125 >= 60000
- c134: X(producte1_;_periodee11)#62 + Y(producte1_;_periodee10)#125
-       - Y(producte1_;_periodee11)#126 >= 70000
- c135: X(producte1_;_periodee12)#65 + Y(producte1_;_periodee11)#126
-       - Y(producte1_;_periodee12)#127 >= 60000
+       - 1000 Y(producte0_;_periodee0;_scenarye0)#102
+       - 1000 Y(producte1_;_periodee0;_scenarye0)#115 + x129#128
+       - 11 Y(producte0_;_periodee1;_scenarye1)#129
+       - 11 Y(producte0_;_periodee2;_scenarye1)#130
+       - 11 Y(producte0_;_periodee3;_scenarye1)#131
+       - 11 Y(producte0_;_periodee4;_scenarye1)#132
+       - 11 Y(producte0_;_periodee5;_scenarye1)#133
+       - 11 Y(producte0_;_periodee6;_scenarye1)#134
+       - 11 Y(producte0_;_periodee7;_scenarye1)#135
+       - 11 Y(producte0_;_periodee8;_scenarye1)#136
+       - 11 Y(producte0_;_periodee9;_scenarye1)#137
+       - 11 Y(producte0_;_periodee10;_scenarye1)#138
+       - 11 Y(producte0_;_periodee11;_scenarye1)#139
+       - 11 Y(producte0_;_periodee12;_scenarye1)#140
+       - 11 Y(producte1_;_periodee1;_scenarye1)#141
+       - 11 Y(producte1_;_periodee2;_scenarye1)#142
+       - 11 Y(producte1_;_periodee3;_scenarye1)#143
+       - 11 Y(producte1_;_periodee4;_scenarye1)#144
+       - 11 Y(producte1_;_periodee5;_scenarye1)#145
+       - 11 Y(producte1_;_periodee6;_scenarye1)#146
+       - 11 Y(producte1_;_periodee7;_scenarye1)#147
+       - 11 Y(producte1_;_periodee8;_scenarye1)#148
+       - 11 Y(producte1_;_periodee9;_scenarye1)#149
+       - 11 Y(producte1_;_periodee10;_scenarye1)#150
+       - 11 Y(producte1_;_periodee11;_scenarye1)#151
+       - 11 Y(producte1_;_periodee12;_scenarye1)#152 >= -13768000
+ c112: X(producte0_;_periodee1)#1 + Y(producte0_;_periodee0;_scenarye0)#102
+       - Y(producte0_;_periodee1;_scenarye2)#153  = 60000
+ c113: X(producte0_;_periodee2)#34 + Y(producte0_;_periodee1;_scenarye2)#153
+       - Y(producte0_;_periodee2;_scenarye2)#154  = 60000
+ c114: X(producte0_;_periodee3)#37 + Y(producte0_;_periodee2;_scenarye2)#154
+       - Y(producte0_;_periodee3;_scenarye2)#155  = 60000
+ c115: X(producte0_;_periodee4)#40 + Y(producte0_;_periodee3;_scenarye2)#155
+       - Y(producte0_;_periodee4;_scenarye2)#156  = 50000
+ c116: X(producte0_;_periodee5)#43 + Y(producte0_;_periodee4;_scenarye2)#156
+       - Y(producte0_;_periodee5;_scenarye2)#157  = 65000
+ c117: X(producte0_;_periodee6)#46 + Y(producte0_;_periodee5;_scenarye2)#157
+       - Y(producte0_;_periodee6;_scenarye2)#158  = 45000
+ c118: X(producte0_;_periodee7)#49 + Y(producte0_;_periodee6;_scenarye2)#158
+       - Y(producte0_;_periodee7;_scenarye2)#159  = 60000
+ c119: X(producte0_;_periodee8)#52 + Y(producte0_;_periodee7;_scenarye2)#159
+       - Y(producte0_;_periodee8;_scenarye2)#160  = 60000
+ c120: X(producte0_;_periodee9)#55 + Y(producte0_;_periodee8;_scenarye2)#160
+       - Y(producte0_;_periodee9;_scenarye2)#161  = 55000
+ c121: X(producte0_;_periodee10)#58 + Y(producte0_;_periodee9;_scenarye2)#161
+       - Y(producte0_;_periodee10;_scenarye2)#162  = 60000
+ c122: X(producte0_;_periodee11)#61 + Y(producte0_;_periodee10;_scenarye2)#162
+       - Y(producte0_;_periodee11;_scenarye2)#163  = 60000
+ c123: X(producte0_;_periodee12)#64 + Y(producte0_;_periodee11;_scenarye2)#163
+       - Y(producte0_;_periodee12;_scenarye2)#164  = 70000
+ c124: X(producte1_;_periodee1)#2 + Y(producte1_;_periodee0;_scenarye0)#115
+       - Y(producte1_;_periodee1;_scenarye2)#165  = 50000
+ c125: X(producte1_;_periodee2)#35 + Y(producte1_;_periodee1;_scenarye2)#165
+       - Y(producte1_;_periodee2;_scenarye2)#166  = 50000
+ c126: X(producte1_;_periodee3)#38 + Y(producte1_;_periodee2;_scenarye2)#166
+       - Y(producte1_;_periodee3;_scenarye2)#167  = 70000
+ c127: X(producte1_;_periodee4)#41 + Y(producte1_;_periodee3;_scenarye2)#167
+       - Y(producte1_;_periodee4;_scenarye2)#168  = 60000
+ c128: X(producte1_;_periodee5)#44 + Y(producte1_;_periodee4;_scenarye2)#168
+       - Y(producte1_;_periodee5;_scenarye2)#169  = 40000
+ c129: X(producte1_;_periodee6)#47 + Y(producte1_;_periodee5;_scenarye2)#169
+       - Y(producte1_;_periodee6;_scenarye2)#170  = 50000
+ c130: X(producte1_;_periodee7)#50 + Y(producte1_;_periodee6;_scenarye2)#170
+       - Y(producte1_;_periodee7;_scenarye2)#171  = 50000
+ c131: X(producte1_;_periodee8)#53 + Y(producte1_;_periodee7;_scenarye2)#171
+       - Y(producte1_;_periodee8;_scenarye2)#172  = 60000
+ c132: X(producte1_;_periodee9)#56 + Y(producte1_;_periodee8;_scenarye2)#172
+       - Y(producte1_;_periodee9;_scenarye2)#173  = 50000
+ c133: X(producte1_;_periodee10)#59 + Y(producte1_;_periodee9;_scenarye2)#173
+       - Y(producte1_;_periodee10;_scenarye2)#174  = 60000
+ c134: X(producte1_;_periodee11)#62 + Y(producte1_;_periodee10;_scenarye2)#174
+       - Y(producte1_;_periodee11;_scenarye2)#175  = 70000
+ c135: X(producte1_;_periodee12)#65 + Y(producte1_;_periodee11;_scenarye2)#175
+       - Y(producte1_;_periodee12;_scenarye2)#176  = 60000
  c136: - 15 L(periodee1)#0 - 100000 Z(investimente0_;_machinee0)#3
        - 100000 Z(investimente0_;_machinee1)#4
        - 100000 Z(investimente0_;_machinee2)#5
@@ -1164,20 +1189,32 @@ Subject To
        - 10 R(investimente0_;_periodee12)#99
        - 9 R(investimente1_;_periodee12)#100
        - 8 R(investimente2_;_periodee12)#101
-       - 1000 Y(producte0_;_periodee0)#102 - 11 Y(producte0_;_periodee1)#103
-       - 11 Y(producte0_;_periodee2)#104 - 11 Y(producte0_;_periodee3)#105
-       - 11 Y(producte0_;_periodee4)#106 - 11 Y(producte0_;_periodee5)#107
-       - 11 Y(producte0_;_periodee6)#108 - 11 Y(producte0_;_periodee7)#109
-       - 11 Y(producte0_;_periodee8)#110 - 11 Y(producte0_;_periodee9)#111
-       - 11 Y(producte0_;_periodee10)#112 - 11 Y(producte0_;_periodee11)#113
-       - 11 Y(producte0_;_periodee12)#114 - 1000 Y(producte1_;_periodee0)#115
-       - 11 Y(producte1_;_periodee1)#116 - 11 Y(producte1_;_periodee2)#117
-       - 11 Y(producte1_;_periodee3)#118 - 11 Y(producte1_;_periodee4)#119
-       - 11 Y(producte1_;_periodee5)#120 - 11 Y(producte1_;_periodee6)#121
-       - 11 Y(producte1_;_periodee7)#122 - 11 Y(producte1_;_periodee8)#123
-       - 11 Y(producte1_;_periodee9)#124 - 11 Y(producte1_;_periodee10)#125
-       - 11 Y(producte1_;_periodee11)#126 - 11 Y(producte1_;_periodee12)#127
-       + x129#128 >= -14143000
+       - 1000 Y(producte0_;_periodee0;_scenarye0)#102
+       - 1000 Y(producte1_;_periodee0;_scenarye0)#115 + x129#128
+       - 11 Y(producte0_;_periodee1;_scenarye2)#153
+       - 11 Y(producte0_;_periodee2;_scenarye2)#154
+       - 11 Y(producte0_;_periodee3;_scenarye2)#155
+       - 11 Y(producte0_;_periodee4;_scenarye2)#156
+       - 11 Y(producte0_;_periodee5;_scenarye2)#157
+       - 11 Y(producte0_;_periodee6;_scenarye2)#158
+       - 11 Y(producte0_;_periodee7;_scenarye2)#159
+       - 11 Y(producte0_;_periodee8;_scenarye2)#160
+       - 11 Y(producte0_;_periodee9;_scenarye2)#161
+       - 11 Y(producte0_;_periodee10;_scenarye2)#162
+       - 11 Y(producte0_;_periodee11;_scenarye2)#163
+       - 11 Y(producte0_;_periodee12;_scenarye2)#164
+       - 11 Y(producte1_;_periodee1;_scenarye2)#165
+       - 11 Y(producte1_;_periodee2;_scenarye2)#166
+       - 11 Y(producte1_;_periodee3;_scenarye2)#167
+       - 11 Y(producte1_;_periodee4;_scenarye2)#168
+       - 11 Y(producte1_;_periodee5;_scenarye2)#169
+       - 11 Y(producte1_;_periodee6;_scenarye2)#170
+       - 11 Y(producte1_;_periodee7;_scenarye2)#171
+       - 11 Y(producte1_;_periodee8;_scenarye2)#172
+       - 11 Y(producte1_;_periodee9;_scenarye2)#173
+       - 11 Y(producte1_;_periodee10;_scenarye2)#174
+       - 11 Y(producte1_;_periodee11;_scenarye2)#175
+       - 11 Y(producte1_;_periodee12;_scenarye2)#176 >= -14143000
 Bounds
       L(periodee1)#0 >= 0
       X(producte0_;_periodee1)#1 >= 0
@@ -1281,34 +1318,82 @@ Bounds
       R(investimente0_;_periodee12)#99 >= 0
       R(investimente1_;_periodee12)#100 >= 0
       R(investimente2_;_periodee12)#101 >= 0
-      Y(producte0_;_periodee0)#102 >= 0
-      Y(producte0_;_periodee1)#103 >= 0
-      Y(producte0_;_periodee2)#104 >= 0
-      Y(producte0_;_periodee3)#105 >= 0
-      Y(producte0_;_periodee4)#106 >= 0
-      Y(producte0_;_periodee5)#107 >= 0
-      Y(producte0_;_periodee6)#108 >= 0
-      Y(producte0_;_periodee7)#109 >= 0
-      Y(producte0_;_periodee8)#110 >= 0
-      Y(producte0_;_periodee9)#111 >= 0
-      Y(producte0_;_periodee10)#112 >= 0
-      Y(producte0_;_periodee11)#113 >= 0
-      Y(producte0_;_periodee12)#114 >= 0
-      Y(producte1_;_periodee0)#115 >= 0
-      Y(producte1_;_periodee1)#116 >= 0
-      Y(producte1_;_periodee2)#117 >= 0
-      Y(producte1_;_periodee3)#118 >= 0
-      Y(producte1_;_periodee4)#119 >= 0
-      Y(producte1_;_periodee5)#120 >= 0
-      Y(producte1_;_periodee6)#121 >= 0
-      Y(producte1_;_periodee7)#122 >= 0
-      Y(producte1_;_periodee8)#123 >= 0
-      Y(producte1_;_periodee9)#124 >= 0
-      Y(producte1_;_periodee10)#125 >= 0
-      Y(producte1_;_periodee11)#126 >= 0
-      Y(producte1_;_periodee12)#127 >= 0
+      Y(producte0_;_periodee0;_scenarye0)#102 >= 0
+      Y(producte0_;_periodee1;_scenarye0)#103 >= 0
+      Y(producte0_;_periodee2;_scenarye0)#104 >= 0
+      Y(producte0_;_periodee3;_scenarye0)#105 >= 0
+      Y(producte0_;_periodee4;_scenarye0)#106 >= 0
+      Y(producte0_;_periodee5;_scenarye0)#107 >= 0
+      Y(producte0_;_periodee6;_scenarye0)#108 >= 0
+      Y(producte0_;_periodee7;_scenarye0)#109 >= 0
+      Y(producte0_;_periodee8;_scenarye0)#110 >= 0
+      Y(producte0_;_periodee9;_scenarye0)#111 >= 0
+      Y(producte0_;_periodee10;_scenarye0)#112 >= 0
+      Y(producte0_;_periodee11;_scenarye0)#113 >= 0
+      Y(producte0_;_periodee12;_scenarye0)#114 >= 0
+      Y(producte1_;_periodee0;_scenarye0)#115 >= 0
+      Y(producte1_;_periodee1;_scenarye0)#116 >= 0
+      Y(producte1_;_periodee2;_scenarye0)#117 >= 0
+      Y(producte1_;_periodee3;_scenarye0)#118 >= 0
+      Y(producte1_;_periodee4;_scenarye0)#119 >= 0
+      Y(producte1_;_periodee5;_scenarye0)#120 >= 0
+      Y(producte1_;_periodee6;_scenarye0)#121 >= 0
+      Y(producte1_;_periodee7;_scenarye0)#122 >= 0
+      Y(producte1_;_periodee8;_scenarye0)#123 >= 0
+      Y(producte1_;_periodee9;_scenarye0)#124 >= 0
+      Y(producte1_;_periodee10;_scenarye0)#125 >= 0
+      Y(producte1_;_periodee11;_scenarye0)#126 >= 0
+      Y(producte1_;_periodee12;_scenarye0)#127 >= 0
       x129#128 Free
-      x131#129 = 0
+      Y(producte0_;_periodee1;_scenarye1)#129 >= 0
+      Y(producte0_;_periodee2;_scenarye1)#130 >= 0
+      Y(producte0_;_periodee3;_scenarye1)#131 >= 0
+      Y(producte0_;_periodee4;_scenarye1)#132 >= 0
+      Y(producte0_;_periodee5;_scenarye1)#133 >= 0
+      Y(producte0_;_periodee6;_scenarye1)#134 >= 0
+      Y(producte0_;_periodee7;_scenarye1)#135 >= 0
+      Y(producte0_;_periodee8;_scenarye1)#136 >= 0
+      Y(producte0_;_periodee9;_scenarye1)#137 >= 0
+      Y(producte0_;_periodee10;_scenarye1)#138 >= 0
+      Y(producte0_;_periodee11;_scenarye1)#139 >= 0
+      Y(producte0_;_periodee12;_scenarye1)#140 >= 0
+      Y(producte1_;_periodee1;_scenarye1)#141 >= 0
+      Y(producte1_;_periodee2;_scenarye1)#142 >= 0
+      Y(producte1_;_periodee3;_scenarye1)#143 >= 0
+      Y(producte1_;_periodee4;_scenarye1)#144 >= 0
+      Y(producte1_;_periodee5;_scenarye1)#145 >= 0
+      Y(producte1_;_periodee6;_scenarye1)#146 >= 0
+      Y(producte1_;_periodee7;_scenarye1)#147 >= 0
+      Y(producte1_;_periodee8;_scenarye1)#148 >= 0
+      Y(producte1_;_periodee9;_scenarye1)#149 >= 0
+      Y(producte1_;_periodee10;_scenarye1)#150 >= 0
+      Y(producte1_;_periodee11;_scenarye1)#151 >= 0
+      Y(producte1_;_periodee12;_scenarye1)#152 >= 0
+      Y(producte0_;_periodee1;_scenarye2)#153 >= 0
+      Y(producte0_;_periodee2;_scenarye2)#154 >= 0
+      Y(producte0_;_periodee3;_scenarye2)#155 >= 0
+      Y(producte0_;_periodee4;_scenarye2)#156 >= 0
+      Y(producte0_;_periodee5;_scenarye2)#157 >= 0
+      Y(producte0_;_periodee6;_scenarye2)#158 >= 0
+      Y(producte0_;_periodee7;_scenarye2)#159 >= 0
+      Y(producte0_;_periodee8;_scenarye2)#160 >= 0
+      Y(producte0_;_periodee9;_scenarye2)#161 >= 0
+      Y(producte0_;_periodee10;_scenarye2)#162 >= 0
+      Y(producte0_;_periodee11;_scenarye2)#163 >= 0
+      Y(producte0_;_periodee12;_scenarye2)#164 >= 0
+      Y(producte1_;_periodee1;_scenarye2)#165 >= 0
+      Y(producte1_;_periodee2;_scenarye2)#166 >= 0
+      Y(producte1_;_periodee3;_scenarye2)#167 >= 0
+      Y(producte1_;_periodee4;_scenarye2)#168 >= 0
+      Y(producte1_;_periodee5;_scenarye2)#169 >= 0
+      Y(producte1_;_periodee6;_scenarye2)#170 >= 0
+      Y(producte1_;_periodee7;_scenarye2)#171 >= 0
+      Y(producte1_;_periodee8;_scenarye2)#172 >= 0
+      Y(producte1_;_periodee9;_scenarye2)#173 >= 0
+      Y(producte1_;_periodee10;_scenarye2)#174 >= 0
+      Y(producte1_;_periodee11;_scenarye2)#175 >= 0
+      Y(producte1_;_periodee12;_scenarye2)#176 >= 0
+      x179#177 = 0
 Binaries
  Z(investimente0_;_machinee0)#3  Z(investimente0_;_machinee1)#4 
  Z(investimente0_;_machinee2)#5  Z(investimente0_;_machinee3)#6 
@@ -1356,17 +1441,78 @@ Generals
  R(investimente0_;_periodee11)#96  R(investimente1_;_periodee11)#97 
  R(investimente2_;_periodee11)#98  R(investimente0_;_periodee12)#99 
  R(investimente1_;_periodee12)#100  R(investimente2_;_periodee12)#101 
- Y(producte0_;_periodee0)#102  Y(producte0_;_periodee1)#103 
- Y(producte0_;_periodee2)#104  Y(producte0_;_periodee3)#105 
- Y(producte0_;_periodee4)#106  Y(producte0_;_periodee5)#107 
- Y(producte0_;_periodee6)#108  Y(producte0_;_periodee7)#109 
- Y(producte0_;_periodee8)#110  Y(producte0_;_periodee9)#111 
- Y(producte0_;_periodee10)#112  Y(producte0_;_periodee11)#113 
- Y(producte0_;_periodee12)#114  Y(producte1_;_periodee0)#115 
- Y(producte1_;_periodee1)#116  Y(producte1_;_periodee2)#117 
- Y(producte1_;_periodee3)#118  Y(producte1_;_periodee4)#119 
- Y(producte1_;_periodee5)#120  Y(producte1_;_periodee6)#121 
- Y(producte1_;_periodee7)#122  Y(producte1_;_periodee8)#123 
- Y(producte1_;_periodee9)#124  Y(producte1_;_periodee10)#125 
- Y(producte1_;_periodee11)#126  Y(producte1_;_periodee12)#127 
+ Y(producte0_;_periodee0;_scenarye0)#102 
+ Y(producte0_;_periodee1;_scenarye0)#103 
+ Y(producte0_;_periodee2;_scenarye0)#104 
+ Y(producte0_;_periodee3;_scenarye0)#105 
+ Y(producte0_;_periodee4;_scenarye0)#106 
+ Y(producte0_;_periodee5;_scenarye0)#107 
+ Y(producte0_;_periodee6;_scenarye0)#108 
+ Y(producte0_;_periodee7;_scenarye0)#109 
+ Y(producte0_;_periodee8;_scenarye0)#110 
+ Y(producte0_;_periodee9;_scenarye0)#111 
+ Y(producte0_;_periodee10;_scenarye0)#112 
+ Y(producte0_;_periodee11;_scenarye0)#113 
+ Y(producte0_;_periodee12;_scenarye0)#114 
+ Y(producte1_;_periodee0;_scenarye0)#115 
+ Y(producte1_;_periodee1;_scenarye0)#116 
+ Y(producte1_;_periodee2;_scenarye0)#117 
+ Y(producte1_;_periodee3;_scenarye0)#118 
+ Y(producte1_;_periodee4;_scenarye0)#119 
+ Y(producte1_;_periodee5;_scenarye0)#120 
+ Y(producte1_;_periodee6;_scenarye0)#121 
+ Y(producte1_;_periodee7;_scenarye0)#122 
+ Y(producte1_;_periodee8;_scenarye0)#123 
+ Y(producte1_;_periodee9;_scenarye0)#124 
+ Y(producte1_;_periodee10;_scenarye0)#125 
+ Y(producte1_;_periodee11;_scenarye0)#126 
+ Y(producte1_;_periodee12;_scenarye0)#127 
+ Y(producte0_;_periodee1;_scenarye1)#129 
+ Y(producte0_;_periodee2;_scenarye1)#130 
+ Y(producte0_;_periodee3;_scenarye1)#131 
+ Y(producte0_;_periodee4;_scenarye1)#132 
+ Y(producte0_;_periodee5;_scenarye1)#133 
+ Y(producte0_;_periodee6;_scenarye1)#134 
+ Y(producte0_;_periodee7;_scenarye1)#135 
+ Y(producte0_;_periodee8;_scenarye1)#136 
+ Y(producte0_;_periodee9;_scenarye1)#137 
+ Y(producte0_;_periodee10;_scenarye1)#138 
+ Y(producte0_;_periodee11;_scenarye1)#139 
+ Y(producte0_;_periodee12;_scenarye1)#140 
+ Y(producte1_;_periodee1;_scenarye1)#141 
+ Y(producte1_;_periodee2;_scenarye1)#142 
+ Y(producte1_;_periodee3;_scenarye1)#143 
+ Y(producte1_;_periodee4;_scenarye1)#144 
+ Y(producte1_;_periodee5;_scenarye1)#145 
+ Y(producte1_;_periodee6;_scenarye1)#146 
+ Y(producte1_;_periodee7;_scenarye1)#147 
+ Y(producte1_;_periodee8;_scenarye1)#148 
+ Y(producte1_;_periodee9;_scenarye1)#149 
+ Y(producte1_;_periodee10;_scenarye1)#150 
+ Y(producte1_;_periodee11;_scenarye1)#151 
+ Y(producte1_;_periodee12;_scenarye1)#152 
+ Y(producte0_;_periodee1;_scenarye2)#153 
+ Y(producte0_;_periodee2;_scenarye2)#154 
+ Y(producte0_;_periodee3;_scenarye2)#155 
+ Y(producte0_;_periodee4;_scenarye2)#156 
+ Y(producte0_;_periodee5;_scenarye2)#157 
+ Y(producte0_;_periodee6;_scenarye2)#158 
+ Y(producte0_;_periodee7;_scenarye2)#159 
+ Y(producte0_;_periodee8;_scenarye2)#160 
+ Y(producte0_;_periodee9;_scenarye2)#161 
+ Y(producte0_;_periodee10;_scenarye2)#162 
+ Y(producte0_;_periodee11;_scenarye2)#163 
+ Y(producte0_;_periodee12;_scenarye2)#164 
+ Y(producte1_;_periodee1;_scenarye2)#165 
+ Y(producte1_;_periodee2;_scenarye2)#166 
+ Y(producte1_;_periodee3;_scenarye2)#167 
+ Y(producte1_;_periodee4;_scenarye2)#168 
+ Y(producte1_;_periodee5;_scenarye2)#169 
+ Y(producte1_;_periodee6;_scenarye2)#170 
+ Y(producte1_;_periodee7;_scenarye2)#171 
+ Y(producte1_;_periodee8;_scenarye2)#172 
+ Y(producte1_;_periodee9;_scenarye2)#173 
+ Y(producte1_;_periodee10;_scenarye2)#174 
+ Y(producte1_;_periodee11;_scenarye2)#175 
+ Y(producte1_;_periodee12;_scenarye2)#176 
 End
