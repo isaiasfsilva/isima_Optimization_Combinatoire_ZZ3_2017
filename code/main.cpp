@@ -37,7 +37,24 @@ double time_interval(timespec start, timespec finish){
 
 //CODE BEGIN
 int main(int argc, char **argv){
-
+		cout << " ---------------------------------------------" << endl;
+		cout << "|                                             |" << endl;
+		cout << "|     # University of Clermont-Auvergne #     |" << endl;
+		cout << "|                                             |" << endl;
+		cout << "|  Discipline: Combinatorial Optimization     |" << endl;
+		cout << "|  Year: 2017/2018                            |" << endl;
+		cout << "|                                             |" << endl;
+		cout << "|  Students: Isaías FARIA and Florian ROBERT  |" << endl;
+		cout << "|                                             |" << endl;
+		cout << "|  This project is also available at Github:  |" << endl;
+		cout << "|    Short Link: https://goo.gl/UqT1dT        |" << endl;
+		cout << "|                                             |" << endl;
+		cout << "|                    ---#---                  |" << endl;
+		cout << "|                                             |" << endl;
+		cout << "|  Available flags:                           |" << endl;
+		cout << "|   -v : VERBOSE MODE                         |" << endl;
+		cout << "|                                             |" << endl;
+		cout << " ---------------------------------------------" << endl;
 //CONTROL SETTINGS
 	struct timespec start, finish;
 	clock_gettime(CLOCK_MONOTONIC, &start);
@@ -57,7 +74,6 @@ int main(int argc, char **argv){
 	if(argc > 2 && string(argv[2])=="-v"){
 		VERBOSE=true;
 	}
-    
  
 //BEGIN CODE
 	//Parser the input file
@@ -73,12 +89,10 @@ int main(int argc, char **argv){
 	vector<Modelize> m_;
 	char t[100];
 //SOLVING FOR A INDIVIDUAL SCENARY
+	cout <<" ----------------- QUESTION A -------------------" << endl;
 	for(int scen=0; scen<c.getNbScenarios();scen++){
-		if(VERBOSE)
-			cout << "Modeling to the scenary [ "<< scen << "]" << endl;
 
-		
-
+		cout << "\tModeling to the scenary [ "<< scen << "]" << endl;
 
 		Modelize m(&c,scen);
 
@@ -102,17 +116,15 @@ int main(int argc, char **argv){
 		m_.push_back(m);
 
 	}
-
+     
 //CHECKING SOLUTION IN OTHER SCENARIES
 	for(int scen=0; scen<c.getNbScenarios();scen++){
 
 
 		for(int scen_t=0; scen_t<c.getNbScenarios();scen_t++){
-			if(VERBOSE)
-				cout << "Checking the investissements Z of the scenary "<< scen <<" AT the scenary [ "<< scen_t << "]" << endl;
-			
-			
 
+			cout << "\tChecking the investissements Z of the scenary "<< scen <<" AT the scenary [ "<< scen_t << "]" << endl;
+	
 			sprintf(t, "Individual SCENARIO[%d with investissements Z of the scenary %d]", scen_t,scen);
 			string name=t;
 			sprintf(t, "outputs/model_SCENARIO[%d with investissements Z of the scenary %d].lp", scen_t,scen);
@@ -135,10 +147,12 @@ int main(int argc, char **argv){
 		
 
 	}
-	
+	cout<< "\n\n" <<endl;
+	cout <<" ----------------- QUESTION B -------------------" << endl;
 //QUESTION B
 	//Solving with MAXMINABSOLUT
 	{
+		cout << "\tSolving with Min Max Absolut"<< endl;
 		sprintf(t, "MAX MIN ABSOLUT");
 		string name=t;
 		sprintf(t, "outputs/model_MAXMINABSOLUT.lp");
@@ -153,9 +167,9 @@ int main(int argc, char **argv){
 		}
 	}
 		
-
 		//Solving with MINMAXREGRET
 	{
+		cout << "\tSolving with Min Max Regret"<< endl;
 		sprintf(t, "MIN MAX REGRET");
 		string name=t;
 		sprintf(t, "outputs/model_MINMAXREGRET.lp");
@@ -172,7 +186,8 @@ int main(int argc, char **argv){
 
 
 		//Solving with AVERAGE
-	{
+	{	
+		cout << "\tSolving with Average"<< endl;
 		sprintf(t, "AVERAGE criteria");
 		string name=t;
 		sprintf(t, "outputs/model_AVERAGE.lp");
@@ -187,7 +202,7 @@ int main(int argc, char **argv){
 		}
 	}
 
-
+	 cout << "------------------- That's all folks! :) --------------------" << endl;
 	clock_gettime(CLOCK_MONOTONIC, &finish);
     double timeTot =time_interval(start, finish);
 	cout << "total execution time = " << timeTot << endl;

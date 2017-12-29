@@ -74,7 +74,8 @@ bool Modelize::create_individual_problem(string model_name, string out_file,stri
 	env = new IloEnv();
 	model = new IloModel(*env, VarName);
 	cplex = new IloCplex(*model);
-	
+	if(!VERBOSE)
+		cplex->setOut(env->getNullStream());	
 	try{
 	 
 	
@@ -348,7 +349,8 @@ bool Modelize::create_MAXMINABSOLUT_problem(string model_name, string out_file,s
 	env = new IloEnv();
 	model = new IloModel(*env, VarName);
 	cplex = new IloCplex(*model);
-	
+	if(!VERBOSE)
+		cplex->setOut(env->getNullStream());	
 	try{
 	 
 	
@@ -627,7 +629,8 @@ bool Modelize::create_MINMAXREGRET_problem(string model_name, string out_file, s
 	env = new IloEnv();
 	model = new IloModel(*env, VarName);
 	cplex = new IloCplex(*model);
-	
+	if(!VERBOSE)
+		cplex->setOut(env->getNullStream());
 	try{
 	 
 	
@@ -898,7 +901,7 @@ bool Modelize::create_AVERAGE_problem(string model_name, string out_file, string
 
 	
 	if(VERBOSE)
-		cout << "\tModelizing the MinimumMaximumRegret problem." << endl;
+		cout << "\tModelizing the Average problem." << endl;
 
 
 	//string buffer
@@ -908,7 +911,8 @@ bool Modelize::create_AVERAGE_problem(string model_name, string out_file, string
 	env = new IloEnv();
 	model = new IloModel(*env, VarName);
 	cplex = new IloCplex(*model);
-	
+	if(!VERBOSE)
+		cplex->setOut(env->getNullStream());
 	try{
 	 
 	
@@ -927,12 +931,15 @@ bool Modelize::create_AVERAGE_problem(string model_name, string out_file, string
 		}
 			
 
-		NumVarMatrix y(*env,core_->getNbProducts());
+		NumVar3Matrix y(*env,core_->getNbProducts());
 		for(int i=0;i<core_->getNbProducts(); i++){
-			y[i]=IloNumVarArray(*env,core_->getNbPeriodes()+1,0,IloInfinity,ILOINT);
+			y[i]=NumVarMatrix(*env,core_->getNbPeriodes()+1);
 			for(int t=0;t<=core_->getNbPeriodes(); t++){
-				sprintf(VarName, "Y[product=%d ; periode=%d]", i,t);
-				y[i][t].setName(VarName);
+				y[i][t]=IloNumVarArray(*env, core_->getNbScenarios(),0,IloInfinity,ILOINT);
+				for(int s=0;s<core_->getNbScenarios(); s++){
+					sprintf(VarName, "Y[product=%d ; periode=%d; scenary=%d]", i,t,s);
+					y[i][t][s].setName(VarName);
+				}
 			}
 		}
 
@@ -1052,24 +1059,7 @@ bool Modelize::create_AVERAGE_problem(string model_name, string out_file, string
 			}
 		}
 
-		//stockage
-		IloExpr OBJ_1c(*env);
 
-		for(int p=0;p<core_->getNbProducts(); p++){
-			for(int t=1;t<=core_->getNbPeriodes(); t++){
-				OBJ_1c+=11*y[p][t];
-			}
-		}
-
-
-		//initial stock
-		IloExpr OBJ_1d(*env);
-
-		for(int p=0;p<core_->getNbProducts(); p++){
-		
-				OBJ_1d+=1000*y[p][0];
-
-		}
 
 
 		//investiment cost
@@ -1093,20 +1083,32 @@ bool Modelize::create_AVERAGE_problem(string model_name, string out_file, string
 		//SOME CONSTRAINTS DEPENDS ON THE SCENARY
 		for(int scen_=0; scen_<core_->getNbScenarios();scen_++){
 
+		//stockage
+		IloExpr OBJ_1c(*env);
+
+		for(int p=0;p<core_->getNbProducts(); p++){
+			for(int t=1;t<=core_->getNbPeriodes(); t++){
+				OBJ_1c+=11*y[p][t][scen_];
+			}
+		}
+
+
+		//initial stock
+		IloExpr OBJ_1d(*env);
+
+		for(int p=0;p<core_->getNbProducts(); p++){
+		
+				OBJ_1d+=1000*y[p][0][0];
+
+		}
+
 
 			// CONTRAINT 2
 			for(int p=0;p<core_->getNbProducts(); p++){
 				for(int t=1;t<=core_->getNbPeriodes(); t++){
 
-
-// ====================================================
-//THIS PART IS IMPORTANT. I'VE CHANGED THIS CONSTRAINT 
-//BECAUSE WE'RE WORKING WITH DIFFERENT SCENARIES... 
-//       NOW IS BIGGER OR EQUAL THAN ....
-// ====================================================
-
-					
-					model->add(y[p][t-1] + x[p][t] - core_->getD_p_t_scen(p,t,scen_) >=  y[p][t]);
+					int aux = (t==1)?0:scen_;	
+					model->add(y[p][t-1][aux] + x[p][t] - core_->getD_p_t_scen(p,t,scen_) ==  y[p][t][scen_]);
 				}
 			}
 
@@ -1166,7 +1168,7 @@ bool Modelize::create_AVERAGE_problem(string model_name, string out_file, string
 	}catch (IloException& e){
 		cerr << " ERREUR : exception = " << e << endl;
 			if(VERBOSE)
-				cout << "\tModelizing the MAX MIN ABSOLUT ... ERROR" << endl;
+				cout << "\tModelizing the AVERAGE ... ERROR" << endl;
 	
 		 }
 
