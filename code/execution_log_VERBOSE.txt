@@ -1,0 +1,726 @@
+ ---------------------------------------------
+|                                             |
+|     # University of Clermont-Auvergne #     |
+|                                             |
+|  Discipline: Combinatorial Optimization     |
+|  Year: 2017/2018                            |
+|                                             |
+|  Students: Isaías FARIA and Florian ROBERT  |
+|                                             |
+|  This project is also available at Github:  |
+|    Short Link: https://goo.gl/UqT1dT        |
+|                                             |
+|                    ---#---                  |
+|                                             |
+|  Available flags:                           |
+|   -v : VERBOSE MODE                         |
+|                                             |
+ ---------------------------------------------
+Reading the header ... 
+	Model with 12 periodes;
+	Model with 2 produits;
+	Model with 3 scenarios;
+	Model with 3 investissements;
+	Model with stock capacity of 11 products;
+Reading the products price ... 
+	The selling price of the product 1 = 50;
+	The selling price of the product 2 = 60;
+	The Amortissement price is 15;
+	The maximum number of machines is 10;
+Reading the Investissement Matrix ... 
+	 Invertissement  1 = 10, 10000, 100000, 10;
+	 Invertissement  2 = 10, 12000, 120000, 9;
+	 Invertissement  3 = 10, 14000, 135000, 8;
+Reading the Investissement Matrix ... 
+Periode  Produit_1    <scenario_1 scenario_2 scenario_3 >   Produit_2    <scenario_1 scenario_2 scenario_3 >   
+1 A    50000  60000  60000     B    50000  50000  50000     
+2 A    60000  60000  60000     B    50000  50000  50000     
+3 A    60000  60000  60000     B    70000  70000  70000     
+4 A    40000  50000  50000     B    50000  50000  60000     
+5 A    40000  65000  65000     B    40000  40000  40000     
+6 A    50000  45000  45000     B    50000  50000  50000     
+7 A    60000  60000  60000     B    50000  50000  50000     
+8 A    50000  60000  60000     B    60000  60000  60000     
+9 A    50000  55000  55000     B    50000  50000  50000     
+10 A    60000  60000  60000     B    35000  35000  60000     
+11 A    60000  60000  60000     B    45000  45000  70000     
+12 A    50000  50000  70000     B    60000  60000  60000     
+Reading input file ... Finished!
+ ----------------- QUESTION A -------------------
+	Modeling to the scenary [ 0]
+	Modelizing the scenario 0 [Individual SCENARIO[0]]
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 28 columns.
+Reduced MIP has 85 rows, 101 columns, and 279 nonzeros.
+Reduced MIP has 0 binaries, 101 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.28 ticks)
+Found incumbent of value -1.2657550e+09 after 0.01 sec. (0.82 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 85 rows, 101 columns, and 279 nonzeros.
+Reduced MIP has 0 binaries, 101 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.12 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (0.16 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                      -1.26576e+09   6.81000e+07       28  105.38%
+*     0+    0                      -1.24676e+09   6.81000e+07       28  105.46%
+      0     0   5.49571e+07    19  -1.24676e+09   5.49571e+07       28  104.41%
+*     0+    0                       5.25550e+07   5.49571e+07       28    4.57%
+      0     0   5.44224e+07     2   5.25550e+07      Fract: 2       52    3.55%
+      0     0   5.43733e+07    41   5.25550e+07      Fract: 1       54    3.46%
+*     0     0      integral     0   5.43700e+07    MIRcuts: 1       55    0.00%
+      0     0        cutoff         5.43700e+07   5.43700e+07       55    0.00%
+Elapsed time = 0.03 sec. (2.45 ticks, tree = 0.00 MB, solutions = 4)
+
+Mixed integer rounding cuts applied:  1
+Gomory fractional cuts applied:  2
+
+Root node processing (before b&c):
+  Real time             =    0.03 sec. (2.46 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.03 sec. (2.46 ticks)
+ Objectif Function = 5.437e+07
+Saving Z variables ... 
+	Modelizing the scenario 0 [Individual SCENARIO[0]] ... OK
+	Modeling to the scenary [ 1]
+	Modelizing the scenario 1 [Individual SCENARIO[1]]
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 28 columns.
+Reduced MIP has 85 rows, 101 columns, and 279 nonzeros.
+Reduced MIP has 0 binaries, 101 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.28 ticks)
+Found incumbent of value -1.3203700e+09 after 0.00 sec. (0.82 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 85 rows, 101 columns, and 279 nonzeros.
+Reduced MIP has 0 binaries, 101 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.12 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (0.17 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                      -1.32037e+09   7.08500e+07       28  105.37%
+*     0+    0                      -1.30137e+09   7.08500e+07       28  105.44%
+      0     0   5.75333e+07    23  -1.30137e+09   5.75333e+07       28  104.42%
+*     0+    0                       5.57633e+07   5.75333e+07       28    3.17%
+      0     0   5.71750e+07    26   5.57633e+07      Fract: 2       54    2.53%
+      0     0   5.71296e+07     2   5.57633e+07      Fract: 1       58    2.45%
+      0     0   5.71011e+07    22   5.57633e+07    MIRcuts: 1       60    2.40%
+      0     0   5.71009e+07    55   5.57633e+07    MIRcuts: 1       61    2.40%
+      0     0   5.71005e+07    55   5.57633e+07    MIRcuts: 1       62    2.40%
+*     0+    0                       5.70820e+07   5.71005e+07       62    0.03%
+      0     0        cutoff         5.70820e+07   5.70820e+07       62    0.00%
+Elapsed time = 0.02 sec. (4.19 ticks, tree = 0.00 MB, solutions = 4)
+
+Mixed integer rounding cuts applied:  2
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (4.19 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (4.19 ticks)
+ Objectif Function = 5.7082e+07
+Saving Z variables ... 
+	Modelizing the scenario 1 [Individual SCENARIO[1]] ... OK
+	Modeling to the scenary [ 2]
+	Modelizing the scenario 2 [Individual SCENARIO[2]]
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 28 columns.
+Reduced MIP has 85 rows, 101 columns, and 279 nonzeros.
+Reduced MIP has 0 binaries, 101 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.28 ticks)
+Found incumbent of value -1.4037450e+09 after 0.00 sec. (0.82 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 85 rows, 101 columns, and 279 nonzeros.
+Reduced MIP has 0 binaries, 101 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.12 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (0.16 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                      -1.40374e+09   7.54500e+07       26  105.37%
+*     0+    0                      -1.38474e+09   7.54500e+07       26  105.45%
+      0     0   6.15479e+07     1  -1.38474e+09   6.15479e+07       26  104.44%
+*     0+    0                       6.04100e+07   6.15479e+07       26    1.88%
+      0     0   6.14733e+07    32   6.04100e+07      Fract: 1       36    1.76%
+      0     0   6.14438e+07    23   6.04100e+07      Fract: 1       45    1.71%
+*     0+    0                       6.13070e+07   6.14438e+07       45    0.22%
+      0     0        cutoff         6.13070e+07   6.13070e+07       45    0.00%
+Elapsed time = 0.02 sec. (3.35 ticks, tree = 0.00 MB, solutions = 4)
+
+Gomory fractional cuts applied:  2
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (3.36 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (3.36 ticks)
+ Objectif Function = 6.1307e+07
+Saving Z variables ... 
+	Modelizing the scenario 2 [Individual SCENARIO[2]] ... OK
+	Checking the investissements Z of the scenary 0 AT the scenary [ 0]
+	Modelizing the scenario 0 [Individual SCENARIO[0 with investissements Z of the scenary 0]]
+Solving model with fixed Z solution ... 
+Tried aggregator 1 time.
+MIP Presolve eliminated 67 rows and 43 columns.
+Reduced MIP has 48 rows, 86 columns, and 156 nonzeros.
+Reduced MIP has 0 binaries, 86 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.15 ticks)
+Found incumbent of value -1.2683850e+09 after 0.00 sec. (0.47 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 48 rows, 86 columns, and 156 nonzeros.
+Reduced MIP has 0 binaries, 86 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.07 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (0.11 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                      -1.26838e+09   6.69900e+07       30  105.28%
+*     0+    0                      -1.26836e+09   6.69900e+07       30  105.28%
+*     0     0      integral     0   5.43700e+07   5.43700e+07       30    0.00%
+Elapsed time = 0.00 sec. (0.72 ticks, tree = 0.00 MB, solutions = 3)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.72 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.72 ticks)
+ Objectif Function = 5.437e+07
+	Modelizing the scenario 0 [Individual SCENARIO[0 with investissements Z of the scenary 0]] ... OK
+	Checking the investissements Z of the scenary 0 AT the scenary [ 1]
+	Modelizing the scenario 1 [Individual SCENARIO[1 with investissements Z of the scenary 0]]
+Solving model with fixed Z solution ... 
+Tried aggregator 1 time.
+MIP Presolve eliminated 67 rows and 43 columns.
+Reduced MIP has 48 rows, 86 columns, and 156 nonzeros.
+Reduced MIP has 0 binaries, 86 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.15 ticks)
+Found incumbent of value -1.3230000e+09 after 0.00 sec. (0.47 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 48 rows, 86 columns, and 156 nonzeros.
+Reduced MIP has 0 binaries, 86 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.07 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (0.10 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                      -1.32300e+09   6.97400e+07       24  105.27%
+*     0+    0                      -1.32298e+09   6.97400e+07       24  105.27%
+*     0     0      integral     0   4.92750e+07   4.92750e+07       24    0.00%
+Elapsed time = 0.00 sec. (0.71 ticks, tree = 0.00 MB, solutions = 3)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.71 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.71 ticks)
+ Objectif Function = 4.9275e+07
+	Modelizing the scenario 1 [Individual SCENARIO[1 with investissements Z of the scenary 0]] ... OK
+	Checking the investissements Z of the scenary 0 AT the scenary [ 2]
+	Modelizing the scenario 2 [Individual SCENARIO[2 with investissements Z of the scenary 0]]
+Solving model with fixed Z solution ... 
+Tried aggregator 1 time.
+MIP Presolve eliminated 67 rows and 43 columns.
+Reduced MIP has 48 rows, 86 columns, and 156 nonzeros.
+Reduced MIP has 0 binaries, 86 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.15 ticks)
+Found incumbent of value -1.4063750e+09 after 0.00 sec. (0.47 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 48 rows, 86 columns, and 156 nonzeros.
+Reduced MIP has 0 binaries, 86 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.07 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (0.09 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                      -1.40638e+09   7.43400e+07       17  105.29%
+*     0+    0                      -1.40635e+09   7.43400e+07       17  105.29%
+*     0     0      integral     0   5.22070e+07   5.22070e+07       17    0.00%
+Elapsed time = 0.00 sec. (0.70 ticks, tree = 0.00 MB, solutions = 3)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.70 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.70 ticks)
+ Objectif Function = 5.2207e+07
+	Modelizing the scenario 2 [Individual SCENARIO[2 with investissements Z of the scenary 0]] ... OK
+	Checking the investissements Z of the scenary 1 AT the scenary [ 0]
+	Modelizing the scenario 0 [Individual SCENARIO[0 with investissements Z of the scenary 1]]
+Solving model with fixed Z solution ... 
+Tried aggregator 1 time.
+MIP Presolve eliminated 67 rows and 43 columns.
+Reduced MIP has 48 rows, 86 columns, and 156 nonzeros.
+Reduced MIP has 0 binaries, 86 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.15 ticks)
+Found incumbent of value -1.2691400e+09 after 0.00 sec. (0.47 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 48 rows, 86 columns, and 156 nonzeros.
+Reduced MIP has 0 binaries, 86 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.07 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (0.11 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                      -1.26914e+09   6.69550e+07       28  105.28%
+*     0+    0                      -1.26912e+09   6.69550e+07       28  105.28%
+*     0     0      integral     0   5.40330e+07   5.40330e+07       28    0.00%
+Elapsed time = 0.00 sec. (0.71 ticks, tree = 0.00 MB, solutions = 3)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.72 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.72 ticks)
+ Objectif Function = 5.4033e+07
+	Modelizing the scenario 0 [Individual SCENARIO[0 with investissements Z of the scenary 1]] ... OK
+	Checking the investissements Z of the scenary 1 AT the scenary [ 1]
+	Modelizing the scenario 1 [Individual SCENARIO[1 with investissements Z of the scenary 1]]
+Solving model with fixed Z solution ... 
+Tried aggregator 1 time.
+MIP Presolve eliminated 67 rows and 43 columns.
+Reduced MIP has 48 rows, 86 columns, and 156 nonzeros.
+Reduced MIP has 0 binaries, 86 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.15 ticks)
+Found incumbent of value -1.3237550e+09 after 0.00 sec. (0.47 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 48 rows, 86 columns, and 156 nonzeros.
+Reduced MIP has 0 binaries, 86 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.07 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (0.11 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                      -1.32376e+09   6.97050e+07       29  105.27%
+*     0+    0                      -1.32373e+09   6.97050e+07       29  105.27%
+*     0     0      integral     0   5.70820e+07   5.70820e+07       29    0.00%
+Elapsed time = 0.00 sec. (0.72 ticks, tree = 0.00 MB, solutions = 3)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.72 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.72 ticks)
+ Objectif Function = 5.7082e+07
+	Modelizing the scenario 1 [Individual SCENARIO[1 with investissements Z of the scenary 1]] ... OK
+	Checking the investissements Z of the scenary 1 AT the scenary [ 2]
+	Modelizing the scenario 2 [Individual SCENARIO[2 with investissements Z of the scenary 1]]
+Solving model with fixed Z solution ... 
+Tried aggregator 1 time.
+MIP Presolve eliminated 67 rows and 43 columns.
+Reduced MIP has 48 rows, 86 columns, and 156 nonzeros.
+Reduced MIP has 0 binaries, 86 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.15 ticks)
+Found incumbent of value -1.4071300e+09 after 0.00 sec. (0.47 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 48 rows, 86 columns, and 156 nonzeros.
+Reduced MIP has 0 binaries, 86 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.07 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (0.10 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                      -1.40713e+09   7.43050e+07       20  105.28%
+*     0+    0                      -1.40711e+09   7.43050e+07       20  105.28%
+*     0     0      integral     0   6.10490e+07   6.10490e+07       20    0.00%
+Elapsed time = 0.00 sec. (0.70 ticks, tree = 0.00 MB, solutions = 3)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.71 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.71 ticks)
+ Objectif Function = 6.1049e+07
+	Modelizing the scenario 2 [Individual SCENARIO[2 with investissements Z of the scenary 1]] ... OK
+	Checking the investissements Z of the scenary 2 AT the scenary [ 0]
+	Modelizing the scenario 0 [Individual SCENARIO[0 with investissements Z of the scenary 2]]
+Solving model with fixed Z solution ... 
+Tried aggregator 1 time.
+MIP Presolve eliminated 67 rows and 43 columns.
+Reduced MIP has 48 rows, 86 columns, and 156 nonzeros.
+Reduced MIP has 0 binaries, 86 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.15 ticks)
+Found incumbent of value -1.2698950e+09 after 0.00 sec. (0.47 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 48 rows, 86 columns, and 156 nonzeros.
+Reduced MIP has 0 binaries, 86 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.07 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (0.12 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                      -1.26990e+09   6.69200e+07       36  105.27%
+*     0+    0                      -1.26987e+09   6.69200e+07       36  105.27%
+*     0     0      integral     0   5.35200e+07   5.35200e+07       36    0.00%
+Elapsed time = 0.00 sec. (0.73 ticks, tree = 0.00 MB, solutions = 3)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.73 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.73 ticks)
+ Objectif Function = 5.352e+07
+	Modelizing the scenario 0 [Individual SCENARIO[0 with investissements Z of the scenary 2]] ... OK
+	Checking the investissements Z of the scenary 2 AT the scenary [ 1]
+	Modelizing the scenario 1 [Individual SCENARIO[1 with investissements Z of the scenary 2]]
+Solving model with fixed Z solution ... 
+Tried aggregator 1 time.
+MIP Presolve eliminated 67 rows and 43 columns.
+Reduced MIP has 48 rows, 86 columns, and 156 nonzeros.
+Reduced MIP has 0 binaries, 86 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.15 ticks)
+Found incumbent of value -1.3245100e+09 after 0.00 sec. (0.47 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 48 rows, 86 columns, and 156 nonzeros.
+Reduced MIP has 0 binaries, 86 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.07 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (0.12 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                      -1.32451e+09   6.96700e+07       36  105.26%
+*     0+    0                      -1.32449e+09   6.96700e+07       36  105.26%
+*     0     0      integral     0   5.66390e+07   5.66390e+07       36    0.00%
+Elapsed time = 0.00 sec. (0.73 ticks, tree = 0.00 MB, solutions = 3)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.73 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.73 ticks)
+ Objectif Function = 5.6639e+07
+	Modelizing the scenario 1 [Individual SCENARIO[1 with investissements Z of the scenary 2]] ... OK
+	Checking the investissements Z of the scenary 2 AT the scenary [ 2]
+	Modelizing the scenario 2 [Individual SCENARIO[2 with investissements Z of the scenary 2]]
+Solving model with fixed Z solution ... 
+Tried aggregator 1 time.
+MIP Presolve eliminated 67 rows and 43 columns.
+Reduced MIP has 48 rows, 86 columns, and 156 nonzeros.
+Reduced MIP has 0 binaries, 86 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.15 ticks)
+Found incumbent of value -1.4078850e+09 after 0.00 sec. (0.47 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 48 rows, 86 columns, and 156 nonzeros.
+Reduced MIP has 0 binaries, 86 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.07 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (0.12 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                      -1.40788e+09   7.42700e+07       31  105.28%
+*     0+    0                      -1.40786e+09   7.42700e+07       31  105.28%
+*     0     0      integral     0   6.13070e+07   6.13070e+07       31    0.00%
+Elapsed time = 0.00 sec. (0.72 ticks, tree = 0.00 MB, solutions = 3)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.73 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.73 ticks)
+ Objectif Function = 6.1307e+07
+	Modelizing the scenario 2 [Individual SCENARIO[2 with investissements Z of the scenary 2]] ... OK
+
+
+
+ ----------------- QUESTION B -------------------
+	Solving with Min Max Absolut
+	Modelizing the MaximumMinimumAbsolut problem.
+	Remark: We have a max problem, so the minmax absolut here is equivalent to the maxmin problem :)
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 28 columns.
+Reduced MIP has 136 rows, 150 columns, and 657 nonzeros.
+Reduced MIP has 0 binaries, 149 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.44 ticks)
+Found incumbent of value -1.3059750e+09 after 0.00 sec. (1.56 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 136 rows, 150 columns, and 657 nonzeros.
+Reduced MIP has 0 binaries, 149 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.21 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (1.12 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                      -1.30598e+09   6.81000e+07      120  105.21%
+      0     0   4.67179e+07     1  -1.30598e+09   4.67179e+07      120  103.58%
+*     0+    0                       4.55800e+07   4.67179e+07      120    2.50%
+      0     0   4.66433e+07    44   4.55800e+07      Fract: 1      129    2.33%
+      0     0   4.66360e+07    24   4.55800e+07      Fract: 1      134    2.32%
+*     0+    0                       4.64770e+07   4.66360e+07      134    0.34%
+      0     0        cutoff         4.64770e+07   4.64770e+07      134    0.00%
+Elapsed time = 0.02 sec. (7.49 ticks, tree = 0.00 MB, solutions = 3)
+
+Gomory fractional cuts applied:  2
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (7.50 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (7.50 ticks)
+ Objectif Function = 4.6477e+07
+Saving Z variables ... 
+	Solving with Min Max Regret
+	Modelizing the MinimumMaximumRegret problem.
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 28 columns.
+Reduced MIP has 136 rows, 150 columns, and 657 nonzeros.
+Reduced MIP has 0 binaries, 149 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.44 ticks)
+Found incumbent of value 1.3603450e+09 after 0.00 sec. (1.56 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 136 rows, 150 columns, and 657 nonzeros.
+Reduced MIP has 0 binaries, 149 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.21 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (1.12 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                       1.36034e+09  -1.37300e+07      120  101.01%
+      0     0  7652142.8571     1   1.36034e+09  7652142.8571      120   99.44%
+*     0+    0                      8790000.0000  7652142.8571      120   12.94%
+      0     0  7726678.5714    44  8790000.0000      Fract: 1      129   12.10%
+      0     0  7734010.5820    24  8790000.0000      Fract: 1      134   12.01%
+*     0+    0                      7893000.0000  7734010.5820      134    2.01%
+      0     0        cutoff        7893000.0000  7893000.0000      134    0.00%
+Elapsed time = 0.02 sec. (7.56 ticks, tree = 0.00 MB, solutions = 3)
+
+Gomory fractional cuts applied:  2
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (7.57 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (7.57 ticks)
+ Objectif Function = 7.893e+06
+Saving Z variables ... 
+	Solving with Average
+	Modelizing the Average problem.
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 28 columns.
+Reduced MIP has 136 rows, 152 columns, and 657 nonzeros.
+Reduced MIP has 0 binaries, 149 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.50 ticks)
+Found incumbent of value 2.9506667e+07 after 0.00 sec. (2.15 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 136 rows, 152 columns, and 657 nonzeros.
+Reduced MIP has 0 binaries, 152 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.23 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (0.90 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                       2.95067e+07   7.14667e+07      100  142.21%
+      0     0   5.42095e+07     4   2.95067e+07   5.42095e+07      100   83.72%
+*     0+    0                       5.30717e+07   5.42095e+07      100    2.14%
+      0     0   5.41350e+07    47   5.30717e+07      Fract: 1      117    2.00%
+      0     0   5.40946e+07    26   5.30717e+07      Fract: 2      140    1.93%
+*     0+    0                       5.33872e+07   5.40946e+07      140    1.33%
+*     0+    0                       5.39687e+07   5.40946e+07      140    0.23%
+      0     0        cutoff         5.39687e+07   5.39687e+07      140    0.00%
+Elapsed time = 0.02 sec. (9.49 ticks, tree = 0.00 MB, solutions = 4)
+
+Gomory fractional cuts applied:  2
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (9.50 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (9.50 ticks)
+ Objectif Function = 5.39687e+07
+Saving Z variables ... 
+
+
+ ----------------- QUESTION C -------------------
+Here we have 2 types of variables.
+ --> The variables Z (buy or not a machine)
+are constant and the same for every scenary (FIRST STEP).
+ --> The variables Y,X,R change with each scenary (SECOND STEP).
+	Solving with Stochastic Min Max Absolut concept
+	Modelizing the Stochastic MaximumMinimumAbsolut problem.
+	Remark: We have a max problem, so the minmax absolut here is equivalent to the maxmin problem :)
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 28 columns.
+Reduced MIP has 256 rows, 294 columns, and 1065 nonzeros.
+Reduced MIP has 0 binaries, 293 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.07 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 256 rows, 294 columns, and 1065 nonzeros.
+Reduced MIP has 0 binaries, 293 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.47 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (3.10 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                      -1.33822e+09   6.81000e+07      242  105.09%
+      0     0   5.44350e+07    85  -1.33822e+09   5.44350e+07      242  104.07%
+*     0+    0                       5.26650e+07   5.44350e+07      242    3.36%
+      0     0   5.43883e+07    85   5.26650e+07      Fract: 2      272    3.27%
+*     0+    0                       5.29977e+07   5.43883e+07      272    2.62%
+*     0+    0                       5.29977e+07   5.43883e+07      272    2.62%
+*     0+    0                       5.40330e+07   5.43883e+07      272    0.66%
+      0     0        cutoff         5.40330e+07   5.40330e+07      272    0.00%
+Elapsed time = 0.03 sec. (15.28 ticks, tree = 0.00 MB, solutions = 5)
+
+Gomory fractional cuts applied:  2
+
+Root node processing (before b&c):
+  Real time             =    0.03 sec. (15.30 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.03 sec. (15.30 ticks)
+ Objectif Function = 5.4033e+07
+Saving Z variables ... 
+	Solving with Stochastic Average concept
+	Modelizing the Stochastic AVERAGE problem.
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 28 columns.
+Reduced MIP has 253 rows, 293 columns, and 831 nonzeros.
+Reduced MIP has 0 binaries, 293 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.95 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 253 rows, 293 columns, and 831 nonzeros.
+Reduced MIP has 0 binaries, 293 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.41 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (0.69 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0   5.77744e+07    68                 5.77744e+07       82         
+*     0+    0                       5.60045e+07   5.77744e+07       82    3.16%
+      0     0   5.73904e+07    76   5.60045e+07      Fract: 2      150    2.47%
+*     0     0      integral     0   5.73880e+07       Cuts: 2      155    0.00%
+      0     0        cutoff         5.73880e+07   5.73880e+07      155    0.00%
+Elapsed time = 0.02 sec. (7.80 ticks, tree = 0.00 MB, solutions = 2)
+
+Mixed integer rounding cuts applied:  1
+Gomory fractional cuts applied:  2
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (7.81 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (7.81 ticks)
+ Objectif Function = 5.7388e+07
+Saving Z variables ... 
+------------------- That's all folks! :) --------------------
+total execution time = 0.332868
