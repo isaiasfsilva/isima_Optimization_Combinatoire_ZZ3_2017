@@ -9,7 +9,8 @@
  About the autors:       
 
  				  Isaías' Personnal website: http://fc.isima.fr/~isfariasil/
-          Florian's Personnal website: 
+       
+       Florian's Personnal website: 
  				  
 
  Hi there,
@@ -17,6 +18,7 @@
 
 1 - Modéliser le problème pour chaque scénario et fournir la valeur et la solution
 optimale -- OK
+
 2 - Réaliser un programme permettant d’établir la meilleure option d’investissement
 pour chacun des critères d’évaluation suivant -- OK
 
