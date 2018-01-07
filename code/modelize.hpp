@@ -50,9 +50,11 @@ class Modelize{
 
 	public:	
 		Modelize(core *core, int scen_=0):scen(scen_),core_(core){};	
+//Question A
 		bool create_individual_problem(string model_name, string out_file, string sol_file);
 		bool create_individual_problem(string model_name, string out_file, string sol_file,const  vector<int>& sol_);
 
+//Question B 
 // ====================================================
 //   THIS PART IS IMPORTANT. I'VE CHANGED THE METHOD 
 //  BECAUSE WE'RE WORKING WITH DIFFERENT SCENARIES... 
@@ -64,14 +66,14 @@ class Modelize{
 // ====================================================	
 		bool create_MAXMINABSOLUT_problem(string model_name, string out_file, string sol_file);
 
-
-
-
 		bool create_MINMAXREGRET_problem(string model_name, string out_file, string sol_file, const vector<Modelize>& m_);
 
 		bool create_AVERAGE_problem(string model_name, string out_file, string sol_file);
 
-
+//Question C
+		bool create_Stochastic_MAXMINABSOLUT_problem(string model_name, string out_file, string sol_file);
+		bool create_Stochastic_AVERAGE_problem(string model_name, string out_file, string sol_file);
+//common functions
 		bool solve(string sol_file);
 
 		bool checkSolution(string sol_);

@@ -148,7 +148,7 @@ int main(int argc, char **argv){
 
 	}
 	cout<< "\n\n" <<endl;
-	cout <<" ----------------- QUESTION B -------------------" << endl;
+		cout <<" ----------------- QUESTION B -------------------" << endl;
 //QUESTION B
 	//Solving with MAXMINABSOLUT
 	{
@@ -198,6 +198,47 @@ int main(int argc, char **argv){
 		Modelize m(&c);
 		if(!m.create_AVERAGE_problem(name, model_file,sol_file)){
 				cout << "Fatal error at the create_AVERAGE_problem() ... Sorry "<< endl; 
+				
+		}
+	}
+
+	cout<< endl<< endl;
+	cout <<" ----------------- QUESTION C -------------------" << endl;
+	if(VERBOSE)
+		cout << "Here we have 2 types of variables.\n --> The variables Z (buy or not a machine)\nare constant and the same for every scenary (FIRST STEP).\n --> The variables Y,X,R change with each scenary (SECOND STEP)."<< endl;
+//QUESTION C
+	//Solving with MAXMINABSOLUT
+	{
+		cout << "\tSolving with Stochastic Min Max Absolut concept"<< endl;
+		sprintf(t, "Stochastic MAX MIN ABSOLUT");
+		string name=t;
+		sprintf(t, "outputs/model_Stochastic_MAXMINABSOLUT.lp");
+		string model_file=t;
+		sprintf(t, "outputs/solution_Stochastic_MAXMINABSOLUT.txt");
+		string sol_file= t;
+
+		Modelize m(&c);
+		if(!m.create_Stochastic_MAXMINABSOLUT_problem(name, model_file,sol_file)){
+				cout << "Fatal error at the create_Stochastic_MAXMINABSOLUT_problem() ... Sorry "<< endl; 
+				
+		}
+	}
+		
+
+
+		//Solving with AVERAGE
+	{	
+		cout << "\tSolving with Stochastic Average concept"<< endl;
+		sprintf(t, "Stochastic AVERAGE criteria");
+		string name=t;
+		sprintf(t, "outputs/model_Stochastic_AVERAGE.lp");
+		string model_file=t;
+		sprintf(t, "outputs/solution_Stochastic_AVERAGE.txt");
+		string sol_file= t;
+
+		Modelize m(&c);
+		if(!m.create_Stochastic_AVERAGE_problem(name, model_file,sol_file)){
+				cout << "Fatal error at the create_Stochastic_AVERAGE_problem() ... Sorry "<< endl; 
 				
 		}
 	}
