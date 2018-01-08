@@ -52,7 +52,7 @@ class Modelize{
 		Modelize(core *core, int scen_=0):scen(scen_),core_(core){};	
 //Question A
 		bool create_individual_problem(string model_name, string out_file, string sol_file);
-		bool create_individual_problem(string model_name, string out_file, string sol_file,const  vector<int>& sol_);
+		bool create_individual_problem(string model_name, string out_file, string sol_file,const  vector<int>& sol_, int cons);
 
 //Question B 
 // ====================================================

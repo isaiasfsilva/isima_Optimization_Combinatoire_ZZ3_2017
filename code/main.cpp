@@ -15,7 +15,7 @@ PURPOSE:Practical activity of combinatorial Optimization
 DESCRIPTION:
 		This is the main file of this project
 
-Last update: 24 december 2017
+Last update: 08 january 2018
 */
 
 
@@ -40,6 +40,7 @@ int main(int argc, char **argv){
 		cout << " ---------------------------------------------" << endl;
 		cout << "|                                             |" << endl;
 		cout << "|     # University of Clermont-Auvergne #     |" << endl;
+		cout << "|          Computer Science Institut          |" << endl;
 		cout << "|                                             |" << endl;
 		cout << "|  Discipline: Combinatorial Optimization     |" << endl;
 		cout << "|  Year: 2017/2018                            |" << endl;
@@ -51,10 +52,23 @@ int main(int argc, char **argv){
 		cout << "|                                             |" << endl;
 		cout << "|                    ---#---                  |" << endl;
 		cout << "|                                             |" << endl;
-		cout << "|  Available flags:                           |" << endl;
+		cout << "|  How to execute:                            |" << endl;
+		cout << "|     ./exe INPUT_FILE* MODE_VAR* FLAGS       |" << endl;
+		cout << "|                                             |" << endl;
+		cout << "|  INPUT_FILE = STRING (*)                    |" << endl;
+		cout << "|                                             |" << endl;
+		cout << "|  MODE_VAR = INT (*)    //to verify solutions|" << endl;
+		cout << "|                                             |" << endl;
+		cout << "|     0: considering Z,X and initial stock in |" << endl;
+		cout << "|        another scenary                      |" << endl;
+		cout << "|     1: considering Z,X in another scenary   |" << endl;
+		cout << "|                                             |" << endl;
+		cout << "|     2: considering just Z in another scenary|" << endl;
+		cout << "|                                             |" << endl;
+		cout << "|  Aditional FLAGS (optional):                |" << endl;
 		cout << "|   -v : VERBOSE MODE                         |" << endl;
 		cout << "|                                             |" << endl;
-		cout << " ---------------------------------------------" << endl;
+		cout << " ---------------------------------------------\n" << endl;
 //CONTROL SETTINGS
 	struct timespec start, finish;
 	clock_gettime(CLOCK_MONOTONIC, &start);
@@ -66,20 +80,30 @@ int main(int argc, char **argv){
 
 //FILE
 	if(argc < 2){
-	  	cout << "Input file error!";
+	  	cout << "// --------------------- Input file Error! --------------------- //\n//    Please read the documentation and the input parameters     //\n\n";
 	  	exit(0);      
 	}
-
+//MODE VAR
+	if(argc < 3){
+	  	cout << "// ---------------------- MODE_VAR Error! ---------------------- //\n//    Please read the documentation and the input parameters     //\n\n";
+	  	exit(0);      
+	}
+	int mode_Var=0;
+	if(argc > 2){
+		mode_Var=atoi(argv[2]);
+	}
 //MODE : 0=default; 1=verbose
-	if(argc > 2 && string(argv[2])=="-v"){
+	if(argc > 3 && string(argv[3])=="-v"){
 		VERBOSE=true;
 	}
+
+
  
 //BEGIN CODE
 	//Parser the input file
 	if(p.readFile(argv[1],&c)==false){
-		cout << "Opening file error" << endl;
-		return 0;
+		cout << "// -------------------- Opening file Error! ------------------- //\n//          Please verify the format of the input file            //\n\n";
+	  	return 0;
 	}else{
 		cout << "Reading input file ... Finished!" << endl;		
 	}
@@ -87,7 +111,7 @@ int main(int argc, char **argv){
 
 //vector of scenaries
 	vector<Modelize> m_;
-	char t[100];
+	char t[200];
 //SOLVING FOR A INDIVIDUAL SCENARY
 	cout <<" ----------------- QUESTION A -------------------" << endl;
 	for(int scen=0; scen<c.getNbScenarios();scen++){
@@ -104,14 +128,10 @@ int main(int argc, char **argv){
 		sprintf(t, "outputs/solution_SCENARIO[%d].txt", scen);
 		string sol_file= t;
 		if(!m.create_individual_problem(name, model_file,sol_file)){
-
- 			cout << "Fatal error at create_individual_problem()... Sorry "<< endl; 
- 			
+ 			cout << "Fatal error at create_individual_problem()... Sorry "<< endl;  			
 		}
 
-		 //solving
-		
-		//m.solve(sol_file);
+
 
 		m_.push_back(m);
 
@@ -119,30 +139,27 @@ int main(int argc, char **argv){
      
 //CHECKING SOLUTION IN OTHER SCENARIES
 	for(int scen=0; scen<c.getNbScenarios();scen++){
-
-
 		for(int scen_t=0; scen_t<c.getNbScenarios();scen_t++){
+			if(scen!=scen_t){
+				cout << "\tChecking the investissements Z of the scenary "<< scen <<" AT the scenary [ "<< scen_t << "] "  << endl;
+		
+				sprintf(t, "Individual SCENARIO[%d with investissements Z of the scenary %d ]", scen_t,scen);
+			
+				string name=t;
+				sprintf(t, "outputs/model_SCENARIO[%d with investissements Z of the scenary %d ].lp", scen_t,scen);
+				string model_file=t;
+				sprintf(t, "outputs/solution_SCENARIO[%d with investissements Z of the scenary %d ].txt", scen_t,scen);
+				string sol_file= t;
 
-			cout << "\tChecking the investissements Z of the scenary "<< scen <<" AT the scenary [ "<< scen_t << "]" << endl;
-	
-			sprintf(t, "Individual SCENARIO[%d with investissements Z of the scenary %d]", scen_t,scen);
-			string name=t;
-			sprintf(t, "outputs/model_SCENARIO[%d with investissements Z of the scenary %d].lp", scen_t,scen);
-			string model_file=t;
-			sprintf(t, "outputs/solution_SCENARIO[%d with investissements Z of the scenary %d].txt", scen_t,scen);
-			string sol_file= t;
+				Modelize m(&c,scen_t);
+				if(!m.create_individual_problem(name, model_file,sol_file, m_[scen].getZ(),mode_Var)){
 
-			Modelize m(&c,scen_t);
-			if(!m.create_individual_problem(name, model_file,sol_file, m_[scen].getZ())){
+		 			cout << "Fatal error at create_individual_problem() ... Sorry "<< endl; 
+		 		
+				}
 
-	 			cout << "Fatal error at create_individual_problem() ... Sorry "<< endl; 
-	 		
-			}
-
-
-
-
-
+			}			
+				
 		}
 		
 

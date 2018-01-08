@@ -1,6 +1,7 @@
  ---------------------------------------------
 |                                             |
 |     # University of Clermont-Auvergne #     |
+|          Computer Science Institut          |
 |                                             |
 |  Discipline: Combinatorial Optimization     |
 |  Year: 2017/2018                            |
@@ -12,10 +13,24 @@
 |                                             |
 |                    ---#---                  |
 |                                             |
-|  Available flags:                           |
+|  How to execute:                            |
+|     ./exe INPUT_FILE* MODE_VAR* FLAGS       |
+|                                             |
+|  INPUT_FILE = STRING (*)                    |
+|                                             |
+|  MODE_VAR = INT (*)    //to verify solutions|
+|                                             |
+|     0: considering Z,X and initial stock in |
+|        another scenary                      |
+|     1: considering Z,X in another scenary   |
+|                                             |
+|     2: considering just Z in another scenary|
+|                                             |
+|  Aditional FLAGS (optional):                |
 |   -v : VERBOSE MODE                         |
 |                                             |
  ---------------------------------------------
+
 Reading input file ... Finished!
  ----------------- QUESTION A -------------------
 	Modeling to the scenary [ 0]
@@ -24,24 +39,18 @@ Reading input file ... Finished!
  Objectif Function = 5.7082e+07
 	Modeling to the scenary [ 2]
  Objectif Function = 6.1307e+07
-	Checking the investissements Z of the scenary 0 AT the scenary [ 0]
- Objectif Function = 5.437e+07
-	Checking the investissements Z of the scenary 0 AT the scenary [ 1]
- Objectif Function = 4.9275e+07
-	Checking the investissements Z of the scenary 0 AT the scenary [ 2]
- Objectif Function = 5.2207e+07
-	Checking the investissements Z of the scenary 1 AT the scenary [ 0]
- Objectif Function = 5.4033e+07
-	Checking the investissements Z of the scenary 1 AT the scenary [ 1]
- Objectif Function = 5.7082e+07
-	Checking the investissements Z of the scenary 1 AT the scenary [ 2]
- Objectif Function = 6.1049e+07
-	Checking the investissements Z of the scenary 2 AT the scenary [ 0]
- Objectif Function = 5.352e+07
-	Checking the investissements Z of the scenary 2 AT the scenary [ 1]
- Objectif Function = 5.6639e+07
-	Checking the investissements Z of the scenary 2 AT the scenary [ 2]
- Objectif Function = 6.1307e+07
+	Checking the investissements Z of the scenary 0 AT the scenary [ 1] 
+ Objectif Function = -247043
+	Checking the investissements Z of the scenary 0 AT the scenary [ 2] 
+ Objectif Function = -8.3622e+07
+	Checking the investissements Z of the scenary 1 AT the scenary [ 0] 
+ Objectif Function = 4.9437e+07
+	Checking the investissements Z of the scenary 1 AT the scenary [ 2] 
+ Objectif Function = -2.6293e+07
+	Checking the investissements Z of the scenary 2 AT the scenary [ 0] 
+ Objectif Function = 4.6477e+07
+	Checking the investissements Z of the scenary 2 AT the scenary [ 1] 
+ Objectif Function = 5.4122e+07
 
 
 
@@ -60,4 +69,4 @@ Reading input file ... Finished!
 	Solving with Stochastic Average concept
  Objectif Function = 5.7388e+07
 ------------------- That's all folks! :) --------------------
-total execution time = 0.354031
+total execution time = 0.318579

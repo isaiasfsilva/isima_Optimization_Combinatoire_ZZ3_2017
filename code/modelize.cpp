@@ -15,7 +15,7 @@ PURPOSE:Practical activity of combinatorial Optimization
 DESCRIPTION:
 		This is .cpp file of the model creator of this project
 
-Last update: 16 december 2017
+Last update:  08 january 2018
 
 */
 
@@ -58,10 +58,10 @@ bool Modelize::checkSolution(string sol_){
 }
 bool Modelize::create_individual_problem(string model_name, string out_file, string sol_file){
 	vector<int> t;
-	return create_individual_problem(model_name,out_file,sol_file,t);
+	return create_individual_problem(model_name,out_file,sol_file,t,0);
 }
 
-bool Modelize::create_individual_problem(string model_name, string out_file,string sol_file, const vector<int>& sol_){
+bool Modelize::create_individual_problem(string model_name, string out_file,string sol_file, const vector<int>& sol_, int cons){
 
 	if(VERBOSE)
 		cout << "\tModelizing the scenario " << scen << " ["<<model_name << "]" << endl;
@@ -214,9 +214,18 @@ bool Modelize::create_individual_problem(string model_name, string out_file,stri
 		}
 
 	//VERIFYING IF WE HAVE A X BASE SOLUTION ALREADY
-		if(sol_.size()==core_->getNbInvestissements()*core_->getNbMachines()){
+		switch(cons){
+			case 1:cons = core_->getNbInvestissements()*core_->getNbMachines();
+			break;
+			case 2:cons=  core_->getNbInvestissements()*core_->getNbMachines() + core_->getNbProducts()*(core_->getNbPeriodes()+1);
+			break;
+			default:cons= core_->getNbProducts() + core_->getNbInvestissements()*core_->getNbMachines() + core_->getNbProducts()*(core_->getNbPeriodes()+1);
+			break;
+		}
+
+		if(sol_.size()>=(cons)){
 			if(VERBOSE)	
-				cout <<"Solving model with fixed Z solution ... "<< endl;
+				cout <<"Solving model with fixed Z, X and initial stock solution ... "<< endl;
 
 
 			for(int i=0;i<core_->getNbInvestissements(); i++){
@@ -224,6 +233,25 @@ bool Modelize::create_individual_problem(string model_name, string out_file,stri
 					model->add(z[i][t]==sol_[i*core_->getNbMachines() + t]);
 				}
 			}
+
+			int base = core_->getNbInvestissements()*core_->getNbMachines();
+			if(cons>base){
+				for(int i=0;i<core_->getNbProducts(); i++){				
+					for(int t=1;t<=core_->getNbPeriodes(); t++){
+						model->add(x[i][t]==sol_[base+i*(core_->getNbPeriodes()+1) + t]);
+					}
+				}
+			}
+
+			base+=core_->getNbProducts()*(core_->getNbPeriodes()+1);
+			if(cons>base){
+				for(int p=0;p<core_->getNbProducts(); p++){
+					model->add(y[p][0]==sol_[base+p]);
+						
+			}	
+			}
+			
+
 		}
 
 	//--------------------OBJECTIF FUNCTION -------------------
@@ -300,16 +328,34 @@ bool Modelize::create_individual_problem(string model_name, string out_file,stri
 
 
 
-	//saving the X variables to put in another scenary
+	//saving the Z and Y variables to put in another scenary
 		if(sol_.size()==0){
 			if(VERBOSE)
-				cout << "Saving Z variables ... " << endl;
+				cout << "Saving Z, X and initial stock variables ... " << endl;
+
 			for(int i=0;i<core_->getNbInvestissements(); i++){
 				for(int t=0;t<core_->getNbMachines(); t++){
 					//get convergence variables
 					solution_x.push_back((cplex->getValue(z[i][t])>0.9)?1:0);
+
+					
 				}
 			}
+
+			
+			for(int i=0;i<core_->getNbProducts(); i++){		
+					solution_x.push_back(0); // for the periode 0 		
+				for(int t=1;t<=core_->getNbPeriodes(); t++){
+					solution_x.push_back(static_cast<int>(cplex->getValue(x[i][t])));
+					
+						
+				}
+			}
+			for(int p=0;p<core_->getNbProducts(); p++){
+				solution_x.push_back(static_cast<int>(cplex->getValue(y[p][0])));
+					
+			}
+
 		}	
 
 

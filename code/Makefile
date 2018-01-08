@@ -23,10 +23,10 @@ SYSTEM = x86-64_linux
 LIBFORMAT = static_pic
 
 #if you are using the ISIMA's cluster (frontalHPC) use this directory
-CPLEXDIRT = /opt/ibm126/ILOG/CPLEX_Studio126
+#CPLEXDIRT = /opt/ibm126/ILOG/CPLEX_Studio126
 
 #if you are using the machine "etud"  use this directory
-#CPLEXDIRT = /opt/ibm/ILOG/CPLEX_Studio126
+CPLEXDIRT = /opt/ibm/ILOG/CPLEX_Studio126
 
 CONCERTDIR = $(CPLEXDIRT)/concert
 CPLEXDIR = $(CPLEXDIRT)/cplex

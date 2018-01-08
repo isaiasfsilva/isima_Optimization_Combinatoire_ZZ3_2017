@@ -76,23 +76,23 @@ Maximize
       - 8 R(investimente2_;_periodee12)#127 + x129#128
 Subject To
  c1:   Y(producte0_;_periodee0)#0 + X(producte0_;_periodee1)#1
-       - Y(producte0_;_periodee1)#2  = 60000
+       - Y(producte0_;_periodee1)#2  = 50000
  c2:   Y(producte0_;_periodee1)#2 + X(producte0_;_periodee2)#3
        - Y(producte0_;_periodee2)#4  = 60000
  c3:   Y(producte0_;_periodee2)#4 + X(producte0_;_periodee3)#5
        - Y(producte0_;_periodee3)#6  = 60000
  c4:   Y(producte0_;_periodee3)#6 + X(producte0_;_periodee4)#7
-       - Y(producte0_;_periodee4)#8  = 50000
+       - Y(producte0_;_periodee4)#8  = 40000
  c5:   Y(producte0_;_periodee4)#8 + X(producte0_;_periodee5)#9
-       - Y(producte0_;_periodee5)#10  = 65000
+       - Y(producte0_;_periodee5)#10  = 40000
  c6:   Y(producte0_;_periodee5)#10 + X(producte0_;_periodee6)#11
-       - Y(producte0_;_periodee6)#12  = 45000
+       - Y(producte0_;_periodee6)#12  = 50000
  c7:   Y(producte0_;_periodee6)#12 + X(producte0_;_periodee7)#13
        - Y(producte0_;_periodee7)#14  = 60000
  c8:   Y(producte0_;_periodee7)#14 + X(producte0_;_periodee8)#15
-       - Y(producte0_;_periodee8)#16  = 60000
+       - Y(producte0_;_periodee8)#16  = 50000
  c9:   Y(producte0_;_periodee8)#16 + X(producte0_;_periodee9)#17
-       - Y(producte0_;_periodee9)#18  = 55000
+       - Y(producte0_;_periodee9)#18  = 50000
  c10:  Y(producte0_;_periodee9)#18 + X(producte0_;_periodee10)#19
        - Y(producte0_;_periodee10)#20  = 60000
  c11:  Y(producte0_;_periodee10)#20 + X(producte0_;_periodee11)#21
@@ -945,7 +945,7 @@ Subject To
        - R(investimente2_;_periodee12)#127  = 0
  c86:  Z(investimente0_;_machinee0)#51  = 1
  c87:  Z(investimente0_;_machinee1)#52  = 1
- c88:  Z(investimente0_;_machinee2)#53  = 1
+ c88:  Z(investimente0_;_machinee2)#53  = 0
  c89:  Z(investimente0_;_machinee3)#54  = 0
  c90:  Z(investimente0_;_machinee4)#55  = 0
  c91:  Z(investimente0_;_machinee5)#56  = 0
@@ -969,10 +969,36 @@ Subject To
  c109: Z(investimente2_;_machinee3)#74  = 1
  c110: Z(investimente2_;_machinee4)#75  = 1
  c111: Z(investimente2_;_machinee5)#76  = 1
- c112: Z(investimente2_;_machinee6)#77  = 0
+ c112: Z(investimente2_;_machinee6)#77  = 1
  c113: Z(investimente2_;_machinee7)#78  = 0
  c114: Z(investimente2_;_machinee8)#79  = 0
  c115: Z(investimente2_;_machinee9)#80  = 0
+ c116: X(producte0_;_periodee1)#1  = 60000
+ c117: X(producte0_;_periodee2)#3  = 72000
+ c118: X(producte0_;_periodee3)#5  = 48000
+ c119: X(producte0_;_periodee4)#7  = 50000
+ c120: X(producte0_;_periodee5)#9  = 65000
+ c121: X(producte0_;_periodee6)#11  = 45000
+ c122: X(producte0_;_periodee7)#13  = 62000
+ c123: X(producte0_;_periodee8)#15  = 58000
+ c124: X(producte0_;_periodee9)#17  = 55000
+ c125: X(producte0_;_periodee10)#19  = 60000
+ c126: X(producte0_;_periodee11)#21  = 60000
+ c127: X(producte0_;_periodee12)#23  = 50000
+ c128: X(producte1_;_periodee1)#26  = 54000
+ c129: X(producte1_;_periodee2)#28  = 46000
+ c130: X(producte1_;_periodee3)#30  = 70000
+ c131: X(producte1_;_periodee4)#32  = 50000
+ c132: X(producte1_;_periodee5)#34  = 40000
+ c133: X(producte1_;_periodee6)#36  = 50000
+ c134: X(producte1_;_periodee7)#38  = 50000
+ c135: X(producte1_;_periodee8)#40  = 60000
+ c136: X(producte1_;_periodee9)#42  = 50000
+ c137: X(producte1_;_periodee10)#44  = 35000
+ c138: X(producte1_;_periodee11)#46  = 45000
+ c139: X(producte1_;_periodee12)#48  = 60000
+ c140: Y(producte0_;_periodee0)#0  = 0
+ c141: Y(producte1_;_periodee0)#25  = 0
 Bounds
       Y(producte0_;_periodee0)#0 >= 0
       X(producte0_;_periodee1)#1 >= 0
@@ -1102,7 +1128,7 @@ Bounds
       R(investimente0_;_periodee12)#125 >= 0
       R(investimente1_;_periodee12)#126 >= 0
       R(investimente2_;_periodee12)#127 >= 0
-      x129#128 = 70850000
+      x129#128 = 68100000
 Binaries
  Z(investimente0_;_machinee0)#51  Z(investimente0_;_machinee1)#52 
  Z(investimente0_;_machinee2)#53  Z(investimente0_;_machinee3)#54 
