@@ -28,8 +28,6 @@ pour chacun des critères d’évaluation suivant -- OK
 
 THE RESULTS ARE IN THE FILES execution_log_simple AND execution_log_verbose
 
-THE DOCUMENTATION CAN BE FOUND HERE >>> https://docs.google.com/document/d/1mURQDX22xdafY4km61kfpw23U3BVkJXXCnd69pZdpj4/edit?usp=sharing
-
 ==============
 
 I think that this TP is finished (code part). Check the commits to follow the devellopement proccess.
