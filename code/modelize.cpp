@@ -215,9 +215,9 @@ bool Modelize::create_individual_problem(string model_name, string out_file,stri
 
 	//VERIFYING IF WE HAVE A X BASE SOLUTION ALREADY
 		switch(cons){
-			case 1:cons = core_->getNbInvestissements()*core_->getNbMachines();
+			case 2:cons = core_->getNbInvestissements()*core_->getNbMachines();
 			break;
-			case 2:cons=  core_->getNbInvestissements()*core_->getNbMachines() + core_->getNbProducts()*(core_->getNbPeriodes()+1);
+			case 1:cons=  core_->getNbInvestissements()*core_->getNbMachines() + core_->getNbProducts()*(core_->getNbPeriodes()+1);
 			break;
 			default:cons= core_->getNbProducts() + core_->getNbInvestissements()*core_->getNbMachines() + core_->getNbProducts()*(core_->getNbPeriodes()+1);
 			break;
